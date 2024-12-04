@@ -1,0 +1,15 @@
+{
+  "name": "spicetime-architecture",
+  "version": "0.0.1",
+  "private": true,
+  "engines": {
+    "node": ">=18.19.0",
+    "pnpm": ">=8.0.0"
+  },
+  "scripts": {
+    "test": "turbo test",
+    "test:all": "turbo test --force",
+    "test:changed": "turbo test --filter=[HEAD^1]"
+  },
+  "packageManager": "pnpm@9.14.4"
+}

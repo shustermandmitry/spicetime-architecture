@@ -1,0 +1,11 @@
+{
+  "": "https://turbo.build/schema.json",
+  "pipeline": {
+    "test": {
+      "dependsOn": ["^build"],
+      "outputs": ["coverage/**"],
+      "cache": true,
+      "inputs": ["src/**/*.{js,jsx,ts,tsx}", "test/**/*.{js,jsx,ts,tsx}"]
+    }
+  }
+}
