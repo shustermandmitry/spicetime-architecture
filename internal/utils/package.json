@@ -1,0 +1,28 @@
+{
+  "name": "@spicetime/internal-utils",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts",
+    "dev": "tsup src/index.ts --format esm,cjs --watch --dts",
+    "lint": "eslint src",
+    "clean": "rimraf dist",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@spicetime/utils": "workspace:*",
+    "jose": "^4.15.4",
+    "node-crypto-js": "^1.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.0",
+    "tsup": "^7.2.0",
+    "typescript": "^5.2.2",
+    "vitest": "^0.34.6"
+  }
+}

@@ -1,7 +1,7 @@
 packages:
-  - 'monorepo/core/runtime/*'
-  - 'monorepo/core/*'
-  - 'monorepo/packages/services/*'
-  - 'monorepo/packages/clients/*'
-  - 'monorepo/internal/**/*'
-  - 'monorepo/tools/*'
+  - 'core/runtime/*'
+  - 'core/*'
+  - 'packages/services/*'
+  - 'packages/clients/*'
+  - 'internal/**/*'
+  - 'tools/*'

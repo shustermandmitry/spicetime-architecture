@@ -1,0 +1,10 @@
+{
+  "name": "@spicetime/auth",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "@apollo/server": "^4.9.5",
+    "graphql": "^16.8.1",
+    "jsonwebtoken": "^9.0.2"
+  }
+}

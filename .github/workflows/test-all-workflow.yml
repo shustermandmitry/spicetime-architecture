@@ -1,0 +1,27 @@
+name: Test All Workflow
+
+on:
+  release:
+    types: [created]
+  workflow_dispatch:
+
+jobs:
+  test_all:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.19.0'
+
+      - name: Install pnpm
+        run: npm install -g pnpm@9.14.4
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Run Test All
+        run: pnpm run test:all

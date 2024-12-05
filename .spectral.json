@@ -1,0 +1,8 @@
+{
+  "extends": ["spectral:oas", "spectral:asyncapi"],
+  "rules": {
+    "operation-description": "warn",
+    "operation-tags": "error",
+    "operation-id": "error"
+  }
+}
