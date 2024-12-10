@@ -1,0 +1,295 @@
+# onboarding/01-repository-structure.md
+```markdown
+---
+title: Repository Structure
+path: /repository-structure
+order: 1
+---
+
+# Repository Structure
+
+## Directory Layout
+
+```
+spicetime-architecture/
+├── docs/                           # Project documentation
+│   ├── .generated/                 # Auto-generated documentation
+│   ├── architecture/               # Architecture documentation
+│   │   ├── diagrams/              # Architecture diagrams
+│   │   └── decisions/             # Architecture decisions
+│   └── api/                       # API documentation
+├── monorepo/                      # Main monorepo structure
+│   ├── packages/                  # Project packages
+│   │   ├── services/             # Backend services
+│   │   └── clients/              # Frontend applications
+│   ├── internal/                 # Internal shared packages
+│   │   ├── core/                # Core utilities
+│   │   └── graphql/             # GraphQL schemas
+│   └── tools/                   # Development tools
+└── website/                      # Documentation website
+    └── docs/                    # Gatsby documentation site
+```
+
+## Key Directories Explained
+
+### Documentation (`docs/`)
+- `.generated/`: Auto-generated API documentation, type definitions, and other generated docs
+- `architecture/`: System design documents, diagrams, and architectural decision records (ADRs)
+- `api/`: API specifications, guides, and documentation
+
+### Monorepo (`monorepo/`)
+- `packages/`: Main project packages
+  - `services/`: Backend microservices (auth, api, etc.)
+  - `clients/`: Frontend applications (web, admin dashboard)
+- `internal/`: Shared internal packages
+  - `core/`: Common utilities and configurations
+  - `graphql/`: Shared GraphQL schemas and types
+- `tools/`: Development and build tools
+
+### Website (`website/`)
+- Gatsby-based documentation site
+- Aggregates all project documentation
+- Provides searchable, versioned docs
+
+## Configuration Files
+
+### Root Configuration
+- `pnpm-workspace.yaml`: Workspace package definitions
+- `turbo.json`: Turborepo pipeline configuration
+- `tsconfig.json`: Base TypeScript configuration
+- `.eslintrc.js`: Base ESLint rules
+- `.prettierrc`: Code formatting rules
+
+### Package Configuration
+Each package in the monorepo contains:
+- `package.json`: Package dependencies and scripts
+- `tsconfig.json`: Package-specific TypeScript settings
+- `README.md`: Package documentation
+- `docs/`: Package-specific documentation
+
+## Common Paths Quick Reference
+
+### Development
+- Services: `monorepo/packages/services/<service-name>`
+- Client Apps: `monorepo/packages/clients/<app-name>`
+- Shared Code: `monorepo/internal/core`
+- Build Tools: `monorepo/tools`
+
+### Documentation
+- API Docs: `docs/api`
+- Architecture: `docs/architecture`
+- Generated: `docs/.generated`
+- Website: `website/docs`
+```
+
+# onboarding/02-development-tools.md
+```markdown
+---
+title: Development Tools
+path: /development-tools
+order: 2
+---
+
+# Development Tools
+
+## Required Tools
+
+### Core Requirements
+1. Node.js (>= 18.0.0)
+2. PNPM (>= 9.14.4)
+3. Git (>= 2.30.0)
+4. Docker (>= 20.10.0)
+
+### Additional Tools
+- TypeScript (>= 5.0.0)
+- Turborepo
+- Vite
+- ESLint
+- Prettier
+
+## Installation & Setup
+
+### 1. Node.js Setup
+```bash
+# Using nvm (recommended)
+nvm install 18
+nvm use 18
+
+# Verify installation
+node --version
+```
+
+### 2. PNPM Setup
+```bash
+# Install PNPM
+npm install -g pnpm@9.14.4
+
+# Verify installation
+pnpm --version
+```
+
+### 3. Repository Setup
+```bash
+# Clone repository
+git clone https://github.com/your-org/spicetime-architecture.git
+cd spicetime-architecture
+
+# Install dependencies
+pnpm install
+
+# Setup git hooks
+pnpm prepare
+```
+
+## Development Commands
+
+### Core Commands
+```bash
+# Start development servers
+pnpm dev
+
+# Build all packages
+pnpm build
+
+# Run tests
+pnpm test
+
+# Lint code
+pnpm lint
+```
+
+### Documentation Commands
+```bash
+# Generate documentation
+pnpm docs:generate
+
+# Start documentation site
+pnpm docs:dev
+
+# Build documentation
+pnpm docs:build
+```
+
+### Package-specific Commands
+```bash
+# Run specific package
+pnpm dev --filter=@spicetime/web
+
+# Build specific package
+pnpm build --filter=@spicetime/auth
+
+# Test specific package
+pnpm test --filter=@spicetime/api
+```
+
+## IDE Configuration
+
+### VSCode Setup
+1. Install recommended extensions:
+   - ESLint
+   - Prettier
+   - TypeScript and JavaScript Language Features
+   - Docker
+   - GitLens
+
+2. Add workspace settings:
+```json
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "eslint.workingDirectories": [
+    "./monorepo/packages/*",
+    "./monorepo/internal/*"
+  ]
+}
+```
+
+### WebStorm Setup
+1. Enable TSLint
+2. Set Prettier as default formatter
+3. Enable TypeScript service
+4. Configure Jest test runner
+
+## Docker Development Environment
+
+### Starting Development Containers
+```bash
+# Start all services
+docker compose up -d
+
+# Start specific service
+docker compose up -d auth-service
+```
+
+### Development Database
+```bash
+# Start development database
+docker compose up -d postgres
+
+# Run migrations
+pnpm db:migrate
+
+# Reset database
+pnpm db:reset
+```
+
+## Troubleshooting
+
+### Common Issues
+
+1. PNPM Installation Errors
+```bash
+# Clear PNPM store
+pnpm store prune
+
+# Clean install
+pnpm install --force
+```
+
+2. Build Errors
+```bash
+# Clean build artifacts
+pnpm clean
+
+# Rebuild
+pnpm build
+```
+
+3. Docker Issues
+```bash
+# Reset containers
+docker compose down --volumes
+docker compose up -d
+```
+
+### Getting Help
+
+1. Check the troubleshooting guide in the documentation site
+2. Search existing GitHub issues
+3. Ask in the development Telegram channel
+4. Create a new GitHub issue
+
+## Updating Tools
+
+### Regular Updates
+```bash
+# Update PNPM
+npm install -g pnpm@latest
+
+# Update project dependencies
+pnpm update
+
+# Update Docker images
+docker compose pull
+```
+
+### Major Version Updates
+Follow the migration guides in the documentation site when updating major versions of:
+- Node.js
+- TypeScript
+- PNPM
+- Docker
+```
+
+Would you like me to continue with the remaining section files?

@@ -1,0 +1,608 @@
+# onboarding/03-git-workflow.md
+```markdown
+---
+title: Git Workflow
+path: /git-workflow
+order: 3
+---
+
+# Git Workflow
+
+## Branch Structure
+
+```
+master
+  └── develop
+      ├── feature/auth-service
+      ├── feature/graphql-gateway
+      └── feature/web-client
+```
+
+### Branch Types
+- `master`: Production code only
+- `develop`: Main development branch
+- `feature/*`: Feature development
+- `release/*`: Release preparation
+- `hotfix/*`: Production fixes
+
+## Branch Naming
+
+### Conventions
+```
+feature/[package-name]-[feature-name]
+release/v[major].[minor].[patch]
+hotfix/[issue-number]-[description]
+```
+
+### Examples
+- `feature/auth-service-jwt`
+- `release/v1.2.0`
+- `hotfix/123-fix-memory-leak`
+
+## Commit Messages
+
+### Format
+```
+type(scope): description
+
+[optional body]
+
+[optional footer]
+```
+
+### Types
+- `feat`: New features
+- `fix`: Bug fixes
+- `docs`: Documentation
+- `style`: Code style
+- `refactor`: Refactoring
+- `test`: Tests
+- `chore`: Build/tools
+
+### Examples
+```
+feat(auth): implement JWT authentication
+fix(api): resolve memory leak in connection pool
+docs(onboarding): update setup instructions
+```
+
+## Pull Request Process
+
+1. Create Feature Branch
+```bash
+git checkout develop
+git pull origin develop
+git checkout -b feature/my-feature
+```
+
+2. Develop and Test
+```bash
+# Make changes
+git add .
+git commit -m "feat(scope): description"
+
+# Run tests
+pnpm test
+```
+
+3. Push and Create PR
+```bash
+git push -u origin feature/my-feature
+# Create PR through GitHub UI
+```
+
+4. PR Requirements
+- Pass CI checks
+- Meet code coverage
+- Include documentation
+- Update CHANGELOG.md
+- Reviewer approval
+
+## Milestone Management
+
+### Tagging Milestones
+```bash
+git commit -m "feat(auth): complete JWT implementation
+
+[milestone]"
+```
+
+### Milestone Process
+1. Tag significant commits
+2. Update documentation
+3. Create PR to develop
+4. Get lead review
+5. Update CHANGELOG.md
+```
+
+# onboarding/04-documentation-system.md
+```markdown
+---
+title: Documentation System
+path: /documentation-system
+order: 4
+---
+
+# Documentation System
+
+## Documentation Types
+
+### 1. Package Documentation
+- README.md files
+- API documentation
+- Usage examples
+- Integration guides
+
+### 2. Architecture Documentation
+- System diagrams
+- Decision records (ADRs)
+- Component interactions
+- Performance considerations
+
+### 3. API Documentation
+- GraphQL schema docs
+- REST API specs
+- Authentication flows
+- Integration guides
+
+### 4. Development Guides
+- Setup instructions
+- Contribution guidelines
+- Best practices
+- Troubleshooting guides
+
+## Documentation Generation
+
+### Commands
+```bash
+# Generate all docs
+pnpm docs:generate
+
+# Generate specific docs
+pnpm docs:generate:api
+pnpm docs:generate:graphql
+pnpm docs:generate:diagrams
+
+# Validate docs
+pnpm docs:validate
+
+# Start docs site
+pnpm docs:dev
+```
+
+## Documentation Locations
+
+### Package Documentation
+```
+packages/my-package/
+├── README.md           # Overview
+├── CHANGELOG.md        # Changes
+└── docs/              # Detailed docs
+    ├── api.md         # API reference
+    ├── examples/      # Usage examples
+    └── guides/        # Integration guides
+```
+
+### Architecture Documentation
+```
+docs/architecture/
+├── diagrams/          # System diagrams
+├── decisions/         # ADRs
+└── performance/       # Performance docs
+```
+
+### API Documentation
+```
+docs/api/
+├── graphql/           # GraphQL docs
+├── rest/              # REST API docs
+└── authentication/    # Auth docs
+```
+
+## Gatsby Documentation Site
+
+### Structure
+```
+website/
+├── content/          # Documentation content
+├── src/             # Site components
+└── static/          # Static assets
+```
+
+### Content Organization
+1. Overview
+2. Getting Started
+3. Architecture
+4. API Reference
+5. Development
+6. Deployment
+
+### Documentation Updates
+1. Make changes in source
+2. Run generation
+3. Preview locally
+4. Push changes
+5. Automatic deployment
+
+## Documentation Best Practices
+
+### Writing Guidelines
+1. Clear and concise
+2. Include examples
+3. Keep up-to-date
+4. Link related docs
+
+### Code Documentation
+1. Use JSDoc comments
+2. Document interfaces
+3. Include examples
+4. Explain edge cases
+
+### Diagrams
+1. Use Mermaid or C4
+2. Keep diagrams simple
+3. Include descriptions
+4. Update regularly
+```
+
+# onboarding/05-package-development.md
+```markdown
+---
+title: Package Development
+path: /package-development
+order: 5
+---
+
+# Package Development
+
+## Creating New Packages
+
+### 1. Package Structure
+```
+my-package/
+├── src/
+│   └── index.ts
+├── tests/
+│   └── index.test.ts
+├── docs/
+│   └── README.md
+└── package.json
+```
+
+### 2. Package Setup
+```bash
+# Create directory
+mkdir -p monorepo/packages/services/my-service
+cd monorepo/packages/services/my-service
+
+# Initialize
+pnpm init
+
+# Add dependencies
+pnpm add dependency-name
+```
+
+### 3. Configuration Files
+
+#### package.json
+```json
+{
+  "name": "@spicetime/my-service",
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest",
+    "lint": "eslint src",
+    "dev": "tsc --watch"
+  }
+}
+```
+
+#### tsconfig.json
+```json
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src"
+  },
+  "include": ["src"]
+}
+```
+
+## Development Workflow
+
+### 1. Development
+```bash
+# Start development
+pnpm dev
+
+# Run tests
+pnpm test
+
+# Check types
+pnpm typecheck
+```
+
+### 2. Testing
+```bash
+# Run all tests
+pnpm test
+
+# Watch mode
+pnpm test:watch
+
+# Coverage
+pnpm test:coverage
+```
+
+### 3. Building
+```bash
+# Build package
+pnpm build
+
+# Clean build
+pnpm clean && pnpm build
+```
+
+## Publishing Process
+
+### 1. Version Update
+```bash
+# Update version
+pnpm version patch|minor|major
+
+# Update CHANGELOG.md
+```
+
+### 2. Publishing
+```bash
+# Build
+pnpm build
+
+# Publish
+pnpm publish
+```
+
+### 3. Documentation
+```bash
+# Generate docs
+pnpm docs:generate
+
+# Update API docs
+pnpm docs:generate:api
+```
+
+## Package Guidelines
+
+### Code Structure
+1. Clear exports
+2. Strong typing
+3. Error handling
+4. Documentation
+
+### Testing Requirements
+1. Unit tests
+2. Integration tests
+3. Type tests
+4. Code coverage
+
+### Documentation Requirements
+1. README.md
+2. API documentation
+3. Usage examples
+4. CHANGELOG.md
+```
+
+# onboarding/06-example-workflows.md
+```markdown
+---
+title: Example Workflows
+path: /example-workflows
+order: 6
+---
+
+# Example Workflows
+
+## New Feature Development
+
+### 1. Setup Feature Branch
+```bash
+# Create branch
+git checkout develop
+git pull origin develop
+git checkout -b feature/auth-service-jwt
+
+# Initialize package
+mkdir -p monorepo/packages/services/auth
+cd monorepo/packages/services/auth
+pnpm init
+```
+
+### 2. Implement Feature
+```typescript
+// src/index.ts
+export interface AuthService {
+  authenticate(credentials: Credentials): Promise<AuthToken>;
+  validate(token: string): Promise<boolean>;
+}
+
+// src/jwt.ts
+import jwt from 'jsonwebtoken';
+
+export class JWTAuthService implements AuthService {
+  constructor(private readonly secret: string) {}
+
+  async authenticate(credentials: Credentials): Promise<AuthToken> {
+    // Implementation
+  }
+
+  async validate(token: string): Promise<boolean> {
+    // Implementation
+  }
+}
+```
+
+### 3. Add Tests
+```typescript
+// tests/jwt.test.ts
+import { describe, it, expect } from 'vitest';
+import { JWTAuthService } from '../src/jwt';
+
+describe('JWTAuthService', () => {
+  it('should authenticate valid credentials', async () => {
+    const auth = new JWTAuthService('secret');
+    const token = await auth.authenticate({
+      username: 'test',
+      password: 'password'
+    });
+    expect(token).toBeDefined();
+  });
+});
+```
+
+### 4. Add Documentation
+```markdown
+# Authentication Service
+
+JWT-based authentication for SpiceTime.
+
+## Installation
+```bash
+pnpm add @spicetime/auth
+```
+
+## Usage
+```typescript
+import { JWTAuthService } from '@spicetime/auth';
+
+const auth = new JWTAuthService({
+  secret: process.env.JWT_SECRET
+});
+```
+```
+
+### 5. Development Cycle
+```bash
+# Run tests
+pnpm test
+
+# Build package
+pnpm build
+
+# Generate docs
+pnpm docs:generate
+
+# Commit changes
+git add .
+git commit -m "feat(auth): implement JWT authentication
+
+[milestone]"
+
+# Push changes
+git push -u origin feature/auth-service-jwt
+```
+
+## Documentation Updates
+
+### 1. Update Package Docs
+```bash
+# Generate API docs
+pnpm docs:generate:api
+
+# Update README
+vim README.md
+
+# Update CHANGELOG
+vim CHANGELOG.md
+```
+
+### 2. Update Architecture
+```bash
+# Update diagrams
+vim docs/architecture/diagrams/auth-flow.md
+
+# Generate diagrams
+pnpm docs:generate:diagrams
+```
+
+### 3. Preview Changes
+```bash
+# Start docs site
+pnpm docs:dev
+
+# View at http://localhost:8000
+```
+
+## Pull Request Creation
+
+### 1. Prepare Changes
+```bash
+# Ensure tests pass
+pnpm test
+
+# Build all packages
+pnpm build
+
+# Check formatting
+pnpm format
+```
+
+### 2. Create Pull Request
+1. Push final changes
+2. Create PR through GitHub
+3. Fill PR template
+4. Request reviews
+5. Address feedback
+
+### 3. Merge Process
+1. Get approvals
+2. Pass CI checks
+3. Update CHANGELOG
+4. Squash and merge
+5. Delete branch
+
+## Production Release
+
+### 1. Version Update
+```bash
+# Update version
+pnpm version minor
+
+# Update CHANGELOG
+vim CHANGELOG.md
+```
+
+### 2. Release Branch
+```bash
+# Create release branch
+git checkout -b release/v1.1.0
+
+# Build and test
+pnpm build
+pnpm test
+```
+
+### 3. Documentation
+```bash
+# Generate final docs
+pnpm docs:generate
+
+# Update versions
+vim docs/versions.json
+
+# Build docs site
+pnpm docs:build
+```
+
+### 4. Release Process
+1. Merge to master
+2. Create release tag
+3. Deploy to production
+4. Monitor metrics
+5. Update documentation
+```
+
+These sections complete the onboarding documentation with detailed information about Git workflows, documentation systems, package development, and example workflows. Each section includes practical examples and step-by-step instructions. Would you like me to make any adjustments to any of the sections?

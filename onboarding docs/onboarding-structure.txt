@@ -1,0 +1,180 @@
+# onboarding/README.md
+```markdown
+# SpiceTime Architecture Onboarding
+
+Welcome to the SpiceTime Architecture project. This onboarding guide will help you understand the project structure, development workflow, and best practices.
+
+## Documentation Structure
+
+1. [Repository Structure](./01-repository-structure.md)
+   - Project layout overview 
+   - Key directories explained
+   - Configuration files
+
+2. [Development Tools](./02-development-tools.md)
+   - Required tools and versions
+   - Setup instructions
+   - Common commands
+   - IDE configuration
+
+3. [Git Workflow](./03-git-workflow.md)
+   - Branch structure
+   - Naming conventions
+   - Commit guidelines
+   - PR process
+   - Milestone management
+
+4. [Documentation System](./04-documentation-system.md)
+   - Documentation types
+   - Generation tools
+   - Gatsby site structure
+   - Adding new documentation
+   - Documentation workflow
+
+5. [Package Development](./05-package-development.md)
+   - Creating new packages
+   - Development workflow
+   - Testing guidelines
+   - Publishing process
+   - Version management
+
+6. [Example Workflows](./06-example-workflows.md)
+   - Feature branch creation
+   - New package development
+   - Documentation updates
+   - Complete PR lifecycle
+   - Common scenarios
+
+## Integration with Gatsby Documentation Site
+
+This documentation is automatically integrated into the project's Gatsby documentation site during the documentation generation process. You can find these guides in the following locations:
+
+- Local development: `http://localhost:8000/onboarding`
+- Production: `https://docs.spicetime.dev/onboarding`
+
+## Maintaining These Docs
+
+1. All onboarding documentation lives in the `/onboarding` directory at the repository root
+2. Each section is a separate markdown file, numbered for order
+3. Updates to these files trigger automatic Gatsby site regeneration
+4. Preview changes locally using `pnpm docs:dev`
+
+## Quick Start
+
+```bash
+# Clone repository
+git clone https://github.com/your-org/spicetime-architecture.git
+cd spicetime-architecture
+
+# Install dependencies
+pnpm install
+
+# Start development environment
+pnpm dev
+
+# View documentation locally
+pnpm docs:dev
+```
+
+For detailed setup instructions, start with the [Development Tools](./02-development-tools.md) guide.
+```
+
+# Root README.md Addition
+```markdown
+## Onboarding Documentation
+
+New to the project? Check out our [Onboarding Guide](./onboarding/README.md) for:
+- Project structure overview
+- Development environment setup
+- Git workflow guidelines
+- Documentation system
+- Package development guide
+- Example workflows
+
+View the complete documentation at [docs.spicetime.dev](https://docs.spicetime.dev)
+```
+
+# gatsby-node.js Addition
+```javascript
+exports.createPages = async ({ actions, graphql, reporter }) => {
+  const { createPage } = actions;
+
+  // Create onboarding guide pages
+  const onboardingResult = await graphql(`
+    {
+      allMarkdownRemark(
+        filter: { fileAbsolutePath: { regex: "/onboarding/" } }
+        sort: { frontmatter: { order: ASC } }
+      ) {
+        edges {
+          node {
+            frontmatter {
+              path
+              title
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  if (onboardingResult.errors) {
+    reporter.panicOnBuild('Error loading onboarding documentation');
+    return;
+  }
+
+  onboardingResult.data.allMarkdownRemark.edges.forEach(({ node }) => {
+    createPage({
+      path: `onboarding${node.frontmatter.path}`,
+      component: require.resolve('./src/templates/docs-template.js'),
+      context: {
+        slug: node.frontmatter.path,
+      },
+    });
+  });
+};
+```
+
+# Documentation Build Script Addition
+```javascript
+// scripts/build-docs.js
+const fs = require('fs');
+const path = require('path');
+const { execSync } = require('child_process');
+
+// Copy onboarding docs to Gatsby
+function copyOnboardingDocs() {
+  const onboardingDir = path.join(process.cwd(), 'onboarding');
+  const gatsbyDocsDir = path.join(process.cwd(), 'website/content/onboarding');
+
+  // Ensure target directory exists
+  fs.mkdirSync(gatsbyDocsDir, { recursive: true });
+
+  // Copy all markdown files
+  fs.readdirSync(onboardingDir)
+    .filter(file => file.endsWith('.md'))
+    .forEach(file => {
+      const source = path.join(onboardingDir, file);
+      const target = path.join(gatsbyDocsDir, file);
+      fs.copyFileSync(source, target);
+    });
+}
+
+// Main build process
+async function buildDocs() {
+  try {
+    // Copy onboarding docs to Gatsby content
+    copyOnboardingDocs();
+
+    // Build Gatsby site
+    execSync('cd website && gatsby build', { stdio: 'inherit' });
+
+    console.log('✨ Documentation build complete');
+  } catch (error) {
+    console.error('Error building documentation:', error);
+    process.exit(1);
+  }
+}
+
+buildDocs();
+```
