@@ -1,0 +1,31 @@
+{
+  "entryPoints": [
+    "src/index.ts"
+  ],
+  "out": "docs",
+  "plugin": [
+    "typedoc-plugin-markdown",
+    "typedoc-plugin-mermaid"
+  ],
+  "theme": "default",
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "excludeExternals": true,
+  "includeVersion": true,
+  "categorizeByGroup": true,
+  "categoryOrder": [
+    "Models",
+    "Utilities",
+    "Interfaces",
+    "*"
+  ],
+  "navigationLinks": {
+    "GitHub": "https://github.com/your-org/spicetime-architecture"
+  },
+  "customCss": "./docs/custom.css",
+  "validation": {
+    "notExported": true,
+    "invalidLink": true,
+    "notDocumented": "error"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "@spicetime/code-assistant-core",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "lint": "eslint src",
+    "docs": "typedoc --options typedoc.json",
+    "docs:watch": "typedoc --options typedoc.json --watch"
+  },
+  "devDependencies": {
+    "@types/node": "^20.9.0",
+    "typescript": "^5.2.2",
+    "vitest": "^0.34.6",
+    "typedoc": "^0.25.3",
+    "typedoc-plugin-markdown": "^3.17.1",
+    "typedoc-plugin-mermaid": "^1.10.0"
+  }
+}
