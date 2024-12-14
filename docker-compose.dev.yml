@@ -1,5 +1,6 @@
 services:
   dev:
+    restart: unless-stopped
     build:
       context: .
       dockerfile: docker/dev/Dockerfile
