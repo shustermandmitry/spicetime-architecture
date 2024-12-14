@@ -3,11 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "turbo run dev",
-    "test": "turbo run test",
-    "build": "turbo run build",
-    "lint": "turbo run lint",
+    "build": "tsc",
     "package": "gradle buildPlugin",
+    "test": "vitest run",
+    "lint": "eslint src",
     "docs": "typedoc --options typedoc.json",
     "docs:watch": "typedoc --options typedoc.json --watch"
   },
