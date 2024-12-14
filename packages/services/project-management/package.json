@@ -1,0 +1,25 @@
+{
+  "name": "@spicetime/project-management",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint src --ext .ts"
+  },
+  "dependencies": {
+    "@spicetime/core": "workspace:*",
+    "graphql": "^16.8.1",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.5",
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.1",
+    "@spicetime/eslint-config": "workspace:*",
+    "@spicetime/tsconfig": "workspace:*"
+  }
+}
