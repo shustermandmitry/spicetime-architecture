@@ -1,6 +1,5 @@
 packages:
-  - 'core/runtime/*'
-  - 'core/*'
+
   - 'packages/*'
-  - 'internal/**/*'
+  - 'packages/internal/*'
   - 'tools/*'
