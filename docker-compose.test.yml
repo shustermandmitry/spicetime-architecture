@@ -5,21 +5,22 @@ services:
       dockerfile: docker/test/Dockerfile
     volumes:
       - .:/app
-      - /app/node_modules
     environment:
       - NODE_ENV=test
     ports:
-      - "9229:9229"  # Debug port
+      - "9229:9229" # Debugging port for test-debug only
     command: ["pnpm", "test:all"]
     profiles:
-      - all          # Full test suite
+      - run-all-tests         # Executes the entire test suite
+
   test-watch:
     extends: test
     command: ["pnpm", "test:watch"]
     profiles:
-      - watch        # Watch mode for development
+      - test-watch-mode       # Runs tests in watch mode for development
+
   test-debug:
     extends: test
     command: ["node", "--inspect-brk=0.0.0.0:9229", "node_modules/vitest/vitest.mjs"]
     profiles:
-      - debug        # Debug mode
+      - debug-tests           # Enables test debugging with inspector

@@ -1,13 +1,25 @@
 services:
   dev:
-    restart: unless-stopped
+    &default-dev
     build:
       context: .
       dockerfile: docker/dev/Dockerfile
     volumes:
       - .:/app
-      - /app/node_modules
+      - ./logs:/app/logs
     ports:
-      - "3000:3000"
+      - "3000:3000"    # App port
     environment:
       - NODE_ENV=development
+    profiles:
+      - dev            # Standard development mode
+    command: ["pnpm", "dev"]
+
+  dev-debug:
+    <<: *default-dev
+    ports:
+      - "3000:3000"    # App debug port
+      - "9229:9229"    # Debugging port
+    command: ["node", "--inspect=0.0.0.0:9229", "src/index.js"]
+    profiles:
+      - dev-debug      # Debugging mode

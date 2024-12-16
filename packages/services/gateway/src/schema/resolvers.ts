@@ -1,1 +1,0 @@
-// GraphQL resolvers will go here

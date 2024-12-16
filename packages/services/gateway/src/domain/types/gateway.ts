@@ -1,1 +1,0 @@
-// Gateway types will go here
