@@ -1,0 +1,16 @@
+{
+  "name": "idea-manager",
+  "version": "1.0.0",
+  "description": "A tool for capturing, processing, and querying ideas with embeddings and relationships.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node scripts/process-notes.js",
+    "query": "node scripts/query.js"
+  },
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "mongodb": "^5.0.0",
+    "openai": "^4.0.0"
+  }
+}
