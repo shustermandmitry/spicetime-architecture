@@ -3,6 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+ "docker:build:dev": "docker-compose -f docker-compose.dev.yml build",
+    "docker:up:dev": "docker-compose -f docker-compose.dev.yml up",
+    "docker:up:dev:detach": "docker-compose -f docker-compose.dev.yml up -d",
+    "docker:down": "docker-compose -f docker-compose.dev.yml down",
+    "docker:logs": "docker-compose -f docker-compose.dev.yml logs -f",
+    "docker:exec:app": "docker exec -it $(docker ps -q -f name=dev) sh",
+    "docker:prune": "docker system prune -f --volumes",
+    "docker:up:debug": "docker-compose -f docker-compose.dev.yml --profile dev-debug up",
+    "docker:up:debug:detach": "docker-compose -f docker-compose.dev.yml --profile dev-debug up -d",
+
     "dev": "turbo run dev",
     "test": "turbo run test",
     "build": "turbo run build",

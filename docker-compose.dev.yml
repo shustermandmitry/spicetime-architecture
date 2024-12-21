@@ -5,8 +5,8 @@ services:
       context: .
       dockerfile: docker/dev/Dockerfile
     volumes:
-      - .:/app
-      - ./logs:/app/logs
+      - /Users/dmitryshusterman/WebstormProjects/spicetime-architecture-setup/spicetime-architecture:/app
+      - /Users/dmitryshusterman/WebstormProjects/spicetime-architecture-setup/spicetime-architecture/logs:/app/logs
     ports:
       - "3000:3000"    # App port
     environment:
