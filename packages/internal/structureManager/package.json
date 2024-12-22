@@ -1,0 +1,10 @@
+{
+  "name": "package-builder",
+  "version": "0.1.0",
+  "description": "Meta-framework package for bootstrapping apps.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {}
+}
