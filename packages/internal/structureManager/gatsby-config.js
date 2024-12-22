@@ -1,0 +1,1 @@
+// Placeholder Gatsby configuration file
