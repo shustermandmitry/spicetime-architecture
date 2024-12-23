@@ -1,0 +1,13 @@
+{
+  "pipeline": {
+    "build": {
+      "cache": true,
+      "outputs": ["dist/**"]
+    },
+    "lint": {},
+    "test": {},
+    "dev": {
+      "cache": false
+    }
+  }
+}

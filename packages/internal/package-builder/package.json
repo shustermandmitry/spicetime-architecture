@@ -1,10 +1,16 @@
 {
-  "name": "package-builder",
-  "version": "0.1.0",
-  "description": "Meta-framework package for bootstrapping apps.",
-  "main": "src/index.js",
-  "scripts": {
-    "start": "node src/index.js"
+  "name": "spicetime-architecture",
+  "private": true,
+  "workspaces": ["packages/*", "packages/internals/*"],
+  "devDependencies": {
+    "turbo": "^2.3.3",
+    "eslint": "^8.51.0",
+    "vite": "^4.4.9",
+    "typescript": "^5.2.2"
   },
-  "dependencies": {}
-}
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo lint",
+    "test": "turbo test"
+  }
