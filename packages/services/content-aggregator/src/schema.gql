@@ -1,0 +1,41 @@
+type Query {
+  contentAggregator(
+    pattern: String!,
+    repoName: String!,
+    owner: String!,
+    rootDir: String = "/",
+    preset: PresetType
+  ): AggregatedContent!
+
+  folderStructure(
+    repoName: String!,
+    owner: String!,
+    rootDir: String = "/"
+  ): FolderStructure!
+}
+
+enum PresetType {
+  CONFIG
+}
+
+type AggregatedContent {
+  success: Boolean!
+  markdownFile: String
+  error: String
+}
+
+type FolderStructure {
+  root: String!
+  structure: [FolderEntry!]!
+}
+
+type FolderEntry {
+  fullPath: String!
+  type: FileType!
+  name: String!
+}
+
+enum FileType {
+  FILE
+  DIRECTORY
+}
