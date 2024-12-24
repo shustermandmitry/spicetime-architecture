@@ -1,0 +1,21 @@
+{
+  "name": "@org/context-manager",
+  "version": "1.0.0",
+  "description": "Manages context across applications (e.g., JWT, MongoDB)",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "vite build",
+    "test": "vitest",
+    "docs": "typedoc"
+  },
+  "dependencies": {
+    "mongodb": "^5.0.0",
+    "jsonwebtoken": "^9.0.2"
+  },
+  "devDependencies": {
+    "vite": "^4.4.0",
+    "vitest": "^0.34.0",
+    "typescript": "^5.2.2"
+  }
+}
