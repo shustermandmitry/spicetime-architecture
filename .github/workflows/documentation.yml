@@ -5,7 +5,7 @@ on:
     branches: [ main ]
     paths:
       - 'src/**'
-      - 'docs/**'
+      - 'docs.typedoc/**'
       - 'schema.graphql'
 
 jobs:
@@ -20,11 +20,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Generate Docs
-        run: npm run docs:generate
+        run: npm run docs.typedoc:generate
       - name: Validate Docs
-        run: npm run docs:validate
+        run: npm run docs.typedoc:validate
       - name: Build Website
-        run: npm run docs:build
+        run: npm run docs.typedoc:build
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:

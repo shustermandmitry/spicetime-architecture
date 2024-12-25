@@ -20,7 +20,7 @@ async function processFile(filePath, db) {
 }
 
 (async function () {
-  const notesDir = path.join(__dirname, '../docs/ideas-dumpster');
+  const notesDir = path.join(__dirname, '../docs.typedoc/ideas-dumpster');
   const db = await connectToDb();
 
   const files = fs.readdirSync(notesDir).filter(file => file.endsWith('.md'));

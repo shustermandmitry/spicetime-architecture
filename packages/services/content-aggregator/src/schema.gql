@@ -1,41 +1,82 @@
+""" 
+Aggregator Service Schema:
+Provides operations to retrieve data from multiple services and aggregate results.
+"""
+schema {
+  query: Query
+}
+
+"""
+Queries available in the aggregator.
+"""
 type Query {
-  contentAggregator(
-    pattern: String!,
-    repoName: String!,
-    owner: String!,
-    rootDir: String = "/",
-    preset: PresetType
-  ): AggregatedContent!
-
-  folderStructure(
-    repoName: String!,
-    owner: String!,
-    rootDir: String = "/"
-  ): FolderStructure!
+  """
+  Aggregates data from multiple services and creates a combined result.
+  """
+  aggregateData(input: AggregateInput!): AggregateResult!
 }
 
-enum PresetType {
-  CONFIG
+"""
+Input for the aggregateData query.
+"""
+input AggregateInput {
+  """
+  List of service identifiers to fetch and aggregate data from.
+  """
+  serviceIds: [String!]!
+
+  """
+  Optional filter criteria to be applied on the aggregated data.
+  """
+  filter: String
 }
 
-type AggregatedContent {
-  success: Boolean!
-  markdownFile: String
-  error: String
+"""
+Result of the aggregateData query.
+"""
+type AggregateResult {
+  """
+  Unique request identifier for tracking this aggregation task.
+  """
+  requestId: ID!
+
+  """
+  Aggregated data from the requested services.
+  """
+  data: [AggregatedItem!]!
+
+  """
+  Metadata about the aggregation process (e.g., processing time).
+  """
+  metadata: AggregationMetadata
 }
 
-type FolderStructure {
-  root: String!
-  structure: [FolderEntry!]!
+"""
+Representation of a single item in the aggregated data.
+"""
+type AggregatedItem {
+  """
+  Identifier of the data source (service).
+  """
+  source: String!
+
+  """
+  Data fetched from this source.
+  """
+  content: String!
 }
 
-type FolderEntry {
-  fullPath: String!
-  type: FileType!
-  name: String!
-}
+"""
+Metadata about the aggregation result.
+"""
+type AggregationMetadata {
+  """
+  Total number of services processed.
+  """
+  serviceCount: Int!
 
-enum FileType {
-  FILE
-  DIRECTORY
+  """
+  Time (in milliseconds) taken to process the aggregation.
+  """
+  processingTimeMs: Int
 }

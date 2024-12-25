@@ -1,5 +1,5 @@
 {
-  "pipeline": {
+  "tasks": {
     "test": {
       "dependsOn": ["^build"],
       "outputs": ["coverage/**"],
@@ -22,6 +22,10 @@
     "clean": {
       "outputs": [],
       "cache": false
+    },
+    "generate-all": {
+      "cache": true,
+      "outputs": []
     }
   }
 }

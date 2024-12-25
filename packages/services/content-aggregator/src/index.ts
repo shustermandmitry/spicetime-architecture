@@ -1,7 +1,11 @@
 // src/index.ts
 
 // Definition of ContentAggregator
-export class ContentAggregator {
+export /**
+ * class ContentAggregator
+ * @description Auto-generated documentation.
+ */
+class ContentAggregator {
   sources: Array<{ type: string; endpoint: string }> = [];
 
   addSource(source: { type: string; endpoint: string }) {

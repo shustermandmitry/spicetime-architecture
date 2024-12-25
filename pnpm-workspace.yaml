@@ -1,6 +1,3 @@
 packages:
 
-  - 'packages/*'
-  - 'packages/internal/*'
-  - 'tools/*'
-  - '!packages/internal/*'
+  - 'packages/services/content-aggregator'

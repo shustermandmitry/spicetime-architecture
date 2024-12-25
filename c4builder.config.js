@@ -1,11 +1,11 @@
 module.exports = {
   plantumlVersion: "1.2022.7",
-  outDir: "docs/.generated/architecture",
+  outDir: "docs.typedoc/.generated/architecture",
   input: [
-    "docs/architecture/diagrams",
-    "docs/architecture/decisions"
+    "docs.typedoc/architecture/diagrams",
+    "docs.typedoc/architecture/decisions"
   ],
   watch: {
-    onSuccess: "npm run docs:build"
+    onSuccess: "npm run docs.typedoc:build"
   }
 }

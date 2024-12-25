@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { ContentAggregator } from '../src/index';
+import { ContentAggregator } from '../src';
 
 describe('ContentAggregator', () => {
   it('should initialize without sources', () => {
