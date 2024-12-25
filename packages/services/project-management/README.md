@@ -28,7 +28,7 @@ pnpm test
 pnpm build
 
 # Generate documentation
-pnpm docs
+pnpm docs.typedoc
 ```
 
 ## Architecture

@@ -6,11 +6,11 @@ Documentation is generated using TypeDoc and can be found in the `docs` director
 To generate documentation:
 
 ```bash
-pnpm docs
+pnpm docs.typedoc
 ```
 
 For development with live updates:
 
 ```bash
-pnpm docs:watch
+pnpm docs.typedoc:watch
 ```

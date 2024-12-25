@@ -4,12 +4,12 @@ Documentation is automatically generated and validated as part of the CI/CD pipe
 
 - Generate docs:
   ```bash
-  pnpm run docs:generate
+  pnpm run docs.typedoc:generate
   ```
 
 - Validate docs:
   ```bash
-  pnpm run docs:validate
+  pnpm run docs.typedoc:validate
   ```
 
 Make sure all changes are reflected properly in `/docs`.

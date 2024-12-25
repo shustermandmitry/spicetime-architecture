@@ -8,7 +8,7 @@
 - Automatically generate API documentation.
 - Command:
   ```bash
-  pnpm run docs:generate
+  pnpm run docs.typedoc:generate
   ```
 
 ## Mermaid Diagrams
