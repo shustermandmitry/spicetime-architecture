@@ -6,8 +6,8 @@ const projectRoot = process.cwd();
 
 const structure = {
   folders: [
-    'docs/ideas-dumpster',
-    'docs/structured',
+    'docs.typedoc/ideas-dumpster',
+    'docs.typedoc/structured',
     'db/mongo',
     'db/redis',
     'scripts',
