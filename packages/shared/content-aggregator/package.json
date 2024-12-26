@@ -1,0 +1,33 @@
+{
+  "name": "content-aggregator",
+  "version": "1.0.0",
+  "main": "src/server/index.ts",
+  "scripts": {
+    "test": "vitest",
+    "generate-types": "graphql-codegen --config codegen.yml",
+    "generate-docs": "pnpm exec graphql-docs-gen -s ./src/shared/graphql/schema.gql -o docs",
+    "generate-all": "pnpm run generate-types && pnpm run generate-docs"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@apollo/server": "^4.11.2",
+    "@graphql-tools/graphql-file-loader": "^8.0.8",
+    "@graphql-tools/load": "^8.0.9",
+    "axios": "^1.7.3",
+    "zod": "^3.22.5"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.3",
+    "@graphql-codegen/typescript": "^4.1.2",
+    "@graphql-codegen/typescript-resolvers": "^4.4.1",
+    "@graphql-tools/utils": "^10.7.0",
+    "@types/node": "^20.8.6",
+    "get-graphql-schema": "^2.1.2",
+    "graphql": "15.8.0",
+    "graphql-docs": "^0.2.0",
+    "typedoc": "^0.25.8",
+    "typescript": "^5.3.3",
+    "vitest": "^2.1.8"
+  }
+}
+      
