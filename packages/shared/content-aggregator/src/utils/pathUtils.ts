@@ -1,3 +1,13 @@
+
+/**
+ * Configuration for paths used in the workflow
+ */
+export type PathConfig = {
+  schemaPath: string;
+  outputPath: string;
+  [key: string]: string;
+};
+  
 import path from "path";
 
 export interface PathConfig {
