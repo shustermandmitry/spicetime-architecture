@@ -1,0 +1,229 @@
+"""
+The root schema for the Accounts and Authentication system.
+This schema includes operations to manage users, roles, and scopes.
+"""
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+"""
+Root query type for account and authentication-related operations.
+"""
+type Query {
+  """
+  Fetch detailed information about the currently authenticated user.
+  Requires a valid authentication token.
+  """
+  me: User!
+
+  """
+  Fetch a user by ID. Requires admin access.
+  """
+  getUserById(id: ID!): User
+
+  """
+  Check if the current user has specific scopes or roles.
+  This acts as a utility query for fine-grained access control.
+  """
+  checkAccess(scopes: [String!], roles: [String!]): Boolean!
+
+  """
+  Get all logged-in sessions for the current user.
+  Useful for session management.
+  """
+  mySessions: [Session!]!
+}
+
+"""
+Root mutation type for account and authentication-related operations.
+"""
+type Mutation {
+  """
+  Login a user. Returns an access token and refresh token pair.
+  """
+  login(username: String!, password: String!): AuthTokens!
+
+  """
+  Refresh the access token using a valid refresh token.
+  """
+  refreshToken(refreshToken: String!): AuthTokens!
+
+  """
+  Logout the current session or a specific session of the user.
+  
+  If `sessionId` is provided, only that session is logged out.
+  Otherwise, the current session is terminated.
+  """
+  logout(sessionId: ID): Boolean!
+
+  """
+  Update the current user's profile (e.g., email, username, etc.).
+  """
+  updateProfile(input: UpdateProfileInput!): User!
+
+  """
+  Register a new user. Returns the created user object.
+  Typically used for public user sign-ups.
+  """
+  registerUser(input: RegisterUserInput!): User!
+
+  """
+  Roles management for admins to assign or unassign roles for a user.
+  Requires elevated privileges.
+  """
+  assignRole(userId: ID!, role: String!): Boolean!
+  unassignRole(userId: ID!, role: String!): Boolean!
+}
+
+"""
+Represents a user in the system.
+"""
+type User {
+  """
+  The unique identifier of the user.
+  """
+  id: ID!
+
+  """
+  The username of the user.
+  """
+  username: String!
+
+  """
+  The email address of the user.
+  """
+  email: String!
+
+  """
+  The user's profile data, used to store personal or app-specific information.
+  """
+  profile: Profile!
+
+  """
+  The list of roles assigned to the user.
+  Roles determine the user's elevated access permissions.
+  """
+  roles: [Role!]!
+
+  """
+  The list of scopes granted to the user.
+  Scopes provide fine-grained access control for APIs.
+  """
+  scopes: [String!]!
+
+  """
+  Track the devices and sessions this user is logged into.
+  """
+  sessions: [Session!]!
+}
+
+"""
+Represents custom profile data for a user.
+"""
+type Profile {
+  """
+  First name of the user.
+  """
+  firstName: String!
+
+  """
+  Last name of the user.
+  """
+  lastName: String!
+
+  """
+  URL of the user's avatar or profile picture.
+  """
+  avatarUrl: String
+}
+
+"""
+Represents a role in the system that provides elevated access permissions.
+"""
+type Role {
+  """
+  The name of the role, e.g., 'admin', 'editor', 'viewer'.
+  """
+  name: String!
+
+  """
+  A description of the role and what it grants.
+  """
+  description: String
+}
+
+"""
+Represents a session of a logged-in user, typically tied to access tokens.
+"""
+type Session {
+  """
+  The unique identifier of the session.
+  """
+  id: ID!
+
+  """
+  The device where the session is active (e.g., 'Chrome on macOS').
+  """
+  device: String!
+
+  """
+  The timestamp of when the session was created.
+  """
+  createdAt: String!
+
+  """
+  The timestamp of the session's last activity.
+  """
+  lastActiveAt: String!
+}
+
+"""
+Represents the tokens issued upon successful login or token refresh.
+"""
+type AuthTokens {
+  """
+  The access token for authenticated requests.
+  """
+  accessToken: String!
+
+  """
+  The refresh token for obtaining new access tokens.
+  """
+  refreshToken: String!
+}
+
+"""
+Input for updating a user's profile data.
+"""
+input UpdateProfileInput {
+  """
+  The user's new email.
+  """
+  email: String
+
+  """
+  URL to the user's avatar or profile picture.
+  """
+  avatarUrl: String
+}
+
+"""
+Input for registering a new user.
+"""
+input RegisterUserInput {
+  """
+  The username for the new user.
+  """
+  username: String!
+
+  """
+  The email address for the new user.
+  """
+  email: String!
+
+  """
+  The password for the new user.
+  """
+  password: String!
+}
