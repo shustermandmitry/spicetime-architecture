@@ -1,0 +1,17 @@
+{
+  "entryPoints": ["src/index.ts"],
+  "out": "docs",
+  "plugin": ["typedoc-plugin-markdown"],
+  "theme": "markdown",
+  "readme": "README.md",
+  "name": "ST CLI Documentation",
+  "categorizeByGroup": true,
+  "categoryOrder": ["Core", "Commands", "Utils"],
+  "exclude": ["**/*.test.ts"],
+  "excludePrivate": true,
+  "excludeExternals": true,
+  "validation": {
+    "notDocumented": true,
+    "invalidLink": true
+  }
+}

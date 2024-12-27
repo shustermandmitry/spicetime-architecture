@@ -1,0 +1,30 @@
+
+{
+  "name": "@spicetime/cli",
+  "version": "0.1.0",
+  "description": "SpiceTime CLI tool for project management",
+  "bin": {
+    "st": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/index.ts",
+    "test": "vitest",
+    "lint": "eslint src --ext .ts",
+    "clean": "rimraf dist"
+  },
+  "dependencies": {
+    "commander": "^11.0.0",
+    "fs-extra": "^11.1.1",
+    "inquirer": "^9.2.10",
+    "chalk": "^5.3.0",
+    "zod": "^3.22.2",
+    "ora": "^7.0.1"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.1",
+    "@types/inquirer": "^9.0.3",
+    "typescript": "^5.2.2",
+    "ts-node": "^10.9.1"
+  }
+}
