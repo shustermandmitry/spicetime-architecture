@@ -12,7 +12,6 @@
     "docker:prune": "docker system prune -f --volumes",
     "docker:up:debug": "docker-compose -f docker-compose.dev.yml --profile dev-debug up",
     "docker:up:debug:detach": "docker-compose -f docker-compose.dev.yml --profile dev-debug up -d",
-
     "dev": "turbo run dev",
     "test": "turbo run test",
     "build": "turbo run build",
@@ -31,12 +30,25 @@
     "docs:serve": "gatsby serve",
     "docs:testGQL": "turbo run generate-all"
   },
+  "dependencies": {
+    "@apollo/server": "^4.11.2",
+    "@graphql-tools/graphql-file-loader": "^8.0.8",
+    "@graphql-tools/load": "^8.0.9",
+    "axios": "^1.7.3",
+    "zod": "^3.22.5"
+  },
   "devDependencies": {
     "@graphql-tools/graphql-file-loader": "^8.0.9",
     "@graphql-tools/load": "^8.0.10",
+    "@graphql-codegen/cli": "^5.0.3",
+    "@graphql-codegen/typescript": "^4.1.2",
+    "@graphql-codegen/typescript-resolvers": "^4.4.1",
+    "@graphql-tools/utils": "^10.7.0",
     "@mermaid-js/mermaid-cli": "^11.4.2",
     "@stoplight/spectral-cli": "^6.14.2",
+    "@types/node": "^20.8.6",
     "c4builder": "^0.2.16",
+    "get-graphql-schema": "^2.1.2",
     "gatsby": "^5.14.1",
     "gatsby-plugin-mdx": "^5.14.0",
     "gatsby-remark-mermaid": "^5.0.0",
@@ -59,7 +71,8 @@
     "typedoc": "^0.27.5",
     "typedoc-plugin-markdown": "^4.3.3",
     "typedoc-plugin-mermaid": "^1.12.0",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
   },
   "packageManager": "pnpm@8.7.0"
 }

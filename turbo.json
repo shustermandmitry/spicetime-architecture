@@ -1,23 +1,37 @@
 {
   "tasks": {
     "test": {
-      "dependsOn": ["^build"],
-      "outputs": ["coverage/**"],
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        "coverage/**"
+      ],
       "cache": true,
-      "inputs": ["src/**/*.{js,jsx,ts,tsx}", "test/**/*.{js,jsx,ts,tsx}"]
+      "inputs": [
+        "src/**/*.{js,jsx,ts,tsx}",
+        "test/**/*.{js,jsx,ts,tsx}"
+      ]
     },
     "dev": {
-      "dependsOn": ["^build"],
+      "dependsOn": [
+        "^build"
+      ],
       "cache": false
     },
     "build": {
-      "outputs": ["dist/**"],
+      "outputs": [
+        "dist/**"
+      ],
       "cache": true
     },
     "lint": {
       "outputs": [],
       "cache": true,
-      "inputs": ["src/**/*.{js,jsx,ts,tsx}", "**/*.json"]
+      "inputs": [
+        "src/**/*.{js,jsx,ts,tsx}",
+        "**/*.json"
+      ]
     },
     "clean": {
       "outputs": [],
@@ -27,5 +41,6 @@
       "cache": true,
       "outputs": []
     }
-  }
+  },
+  "workspaces": {}
 }
