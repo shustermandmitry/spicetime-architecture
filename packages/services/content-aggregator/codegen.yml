@@ -1,7 +1,0 @@
-overwrite: true
-schema: "src/schema.gql"
-generates:
-  src/resolvers.ts:
-    plugins:
-      - "typescript"
-      - "typescript-resolvers"

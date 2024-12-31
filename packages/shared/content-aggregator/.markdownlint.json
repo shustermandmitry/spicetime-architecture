@@ -1,7 +1,0 @@
-we need codegen{
-  "default": true,
-  "MD001": false, // Disable header-increment rule
-  "MD013": {"line_length": 120}, // Set max line length to 120
-  "no-trailing-punctuation": {"punctuation": "!"}, // No trailing exclamation marks in headings
-  "MD033": false // Allow inline HTML
-}
