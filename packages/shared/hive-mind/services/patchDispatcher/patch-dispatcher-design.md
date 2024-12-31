@@ -1,0 +1,190 @@
+# PatchDispatcher: AI-Powered Repository Mutation System
+
+## Abstract
+PatchDispatcher is a critical component in the SpiceTime architecture that serves as an execution engine for AI-driven repository mutations. It bridges the gap between AI agents' passive suggestion capabilities and active repository modifications by providing a controlled, interactive system for implementing structural changes. This component enables AI agents to propose and execute complex repository modifications while maintaining human oversight and approval mechanisms.
+
+## Motivation
+Modern AI agents, while capable of sophisticated analysis and code generation, are inherently passive - they can suggest changes but cannot directly modify repository structure. This limitation creates friction in AI-assisted development workflows, where developers must manually implement AI suggestions. PatchDispatcher solves this by:
+
+1. Providing a standardized format for AI agents to describe desired repository mutations
+2. Implementing a secure, controlled pathway for executing these mutations
+3. Maintaining human oversight through interactive confirmation workflows
+4. Ensuring proper version control integration
+
+## System Context
+
+### Position in SpiceTime Architecture
+- Child component of WebStorm in SpiceTime (WiS)
+- Operates through message-based communication
+- Integrates with version control
+- Provides UI feedback through parent component
+
+### Interaction Flow
+```
+AI Agent -> Patch File -> PatchDispatcher -> Human Approval -> Repository Mutation
+```
+
+## Core Functionality
+
+### Patch File Format
+```
+[filename].[description].patch.(txt|md)
+
+Content format:
+/*ST
+target/path/in/repository
+ST*/
+file content here
+
+/*ST
+another/target/path
+ST*/
+more content
+```
+
+### Processing Pipeline
+1. Patch Detection
+   - Monitors for patch files
+   - Validates file format
+   - Parses ST blocks
+
+2. Content Extraction
+   - Extracts target paths
+   - Validates path structure
+   - Prepares content chunks
+
+3. Interactive Confirmation
+   - Presents changes to user
+   - Gathers approvals
+   - Handles overrides
+
+4. Mutation Execution
+   - Creates necessary directories
+   - Writes approved content
+   - Manages atomic operations
+
+5. Version Control Integration
+   - Stages changes
+   - Handles commit messages
+   - Executes commits
+
+## Message Protocol
+
+### Incoming Messages
+```typescript
+type IncomingMessage =
+  | { type: 'START_DISPATCH'; payload: { tabId: string } }
+  | { type: 'FILE_CONTENT'; payload: { content: string } }
+  | { type: 'CONFIRM_RESULT'; payload: { confirmed: boolean } }
+  | { type: 'INPUT_RESULT'; payload: { value: string } }
+  | { type: 'OPERATION_COMPLETE'; payload: { success: boolean } }
+```
+
+### Outgoing Messages
+```typescript
+type OutgoingMessage =
+  | { type: 'REQUEST_FILE_CONTENT'; payload: { path: string } }
+  | { type: 'REQUEST_CONFIRM'; payload: { message: string } }
+  | { type: 'WRITE_FILE'; payload: { path: string; content: string } }
+  | { type: 'COMMIT_CHANGES'; payload: { message: string; files: string[] } }
+  | { type: 'SHOW_MESSAGE'; payload: { message: string; type: string } }
+```
+
+## State Management
+
+### State Interface
+```typescript
+interface State {
+  activeTabId: string | null;
+  currentPatchFile: {
+    commitMessage: string;
+    patches: PatchContent[];
+  } | null;
+  currentPatchIndex: number;
+  status: 'idle' | 'processing' | 'confirming' | 'committing' | 'error';
+  processedFiles: string[];
+}
+```
+
+### State Transitions
+1. Idle -> Processing: On patch file detection
+2. Processing -> Confirming: For each file operation
+3. Confirming -> Processing: After approval
+4. Processing -> Committing: All files processed
+5. Committing -> Idle: After successful commit
+
+## Safety Mechanisms
+
+1. Path Validation
+   - Prevents escaping repository root
+   - Validates file extensions
+   - Checks for reserved paths
+
+2. Content Validation
+   - Validates file formats
+   - Checks content size limits
+   - Verifies syntax where applicable
+
+3. Operation Atomicity
+   - All-or-nothing file operations
+   - Rollback capabilities
+   - Transaction-like semantics
+
+4. Human Circuit Breaker
+   - Required confirmations
+   - Clear operation preview
+   - Abort capabilities
+
+## Future Extensions
+
+1. AI Integration Enhancements
+   - Pattern learning from approvals
+   - Smart commit message generation
+   - Change impact analysis
+
+2. Advanced Validation
+   - Syntax checking
+   - Dependency analysis
+   - Impact prediction
+
+3. Workflow Integration
+   - CI/CD pipeline integration
+   - Automated testing triggers
+   - Documentation updates
+
+## Implementation Strategy
+
+### Phase 1: Core Functionality
+- Basic file operations
+- Interactive confirmation
+- Git integration
+- Error handling
+
+### Phase 2: Enhanced Safety
+- Advanced validation
+- Rollback mechanisms
+- Audit logging
+- Security hardening
+
+### Phase 3: AI Integration
+- Pattern recognition
+- Smart suggestions
+- Impact analysis
+- Learning capabilities
+
+## Success Metrics
+
+1. Reliability
+   - Successful operation rate
+   - Error recovery rate
+   - Data integrity maintenance
+
+2. User Experience
+   - Operation completion time
+   - Confirmation clarity
+   - Error message helpfulness
+
+3. AI Integration
+   - AI suggestion acceptance rate
+   - Pattern learning effectiveness
+   - Change impact prediction accuracy
