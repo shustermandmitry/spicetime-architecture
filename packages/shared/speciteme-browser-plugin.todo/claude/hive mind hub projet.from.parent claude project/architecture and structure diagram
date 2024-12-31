@@ -1,0 +1,16 @@
+Browser Extension
+├── Core (minimal runtime in V8)
+│   ├── Module Loader
+│   ├── Message Bus
+│   └── Identity Manager
+│
+├── Pluggable Modules
+│   ├── File System Watcher (V8 or Rust/WASM)
+│   ├── State Manager (simple or RTOS-based)
+│   ├── IDE Bridges (as needed)
+│   └── Additional Capabilities (plug in as required)
+│
+└── Extension APIs
+    ├── Background Worker
+    ├── Storage
+    └── Network
