@@ -1,3 +1,4 @@
 packages:
 
-  - 'packages/shared/content-aggregator'
+  - 'packages/*'
+  - 'packages/tools/*'
