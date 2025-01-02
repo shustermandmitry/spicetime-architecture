@@ -1,80 +1,39 @@
-/**
- * @module PatchDispatcher
- * @description Storybook stories for PatchDispatcher component
- */
 
-import React from 'react';
+// File: packages/spicetime-react-app/src/components/PatchDispatcher/PatchDispatcher.stories.tsx
+
 import type { Meta, StoryObj } from '@storybook/react';
-import { MockedProvider } from '@apollo/client/testing';
-import { PatchDispatcher } from './PatchDispatcher';
-import { FileSystemContext } from './context';
-import { ACTIVE_PATCHES } from './graphql';
+import { PatchDispatcher } from './components/PatchDispatcher';
+import { FileSystemContext } from './context/FileSystemContext';
 
-const mockFileSystem = {
-  readFile: async () => 'test content',
+const mockFs = {
+  readFile: async () => '',
   writeFile: async () => {},
   exists: async () => true,
   mkdir: async () => {}
 };
-
-const mockPatches = [
-  {
-    id: 'example-1',
-    timestamp: Date.now(),
-    status: 'completed',
-    patches: [
-      {
-        targetPath: '/src/example.ts',
-        content: 'console.log("Hello");'
-      }
-    ]
-  },
-  {
-    id: 'example-2',
-    timestamp: Date.now(),
-    status: 'pending',
-    patches: [
-      {
-        targetPath: '/src/test.ts',
-        content: 'export const test = true;'
-      }
-    ]
-  }
-];
-
-const mocks = [
-  {
-    request: {
-      query: ACTIVE_PATCHES
-    },
-    result: {
-      data: {
-        activePatches: mockPatches
-      }
-    }
-  }
-];
 
 const meta: Meta<typeof PatchDispatcher> = {
   title: 'Components/PatchDispatcher',
   component: PatchDispatcher,
   decorators: [
     (Story) => (
-      <MockedProvider mocks={mocks} addTypename={false}>
-        <FileSystemContext.Provider value={mockFileSystem}>
-          <div className="p-6 max-w-3xl mx-auto">
-            <Story />
-          </div>
-        </FileSystemContext.Provider>
-      </MockedProvider>
+      <FileSystemContext.Provider value={mockFs}>
+        <div style={{ padding: '2rem' }}>
+          <Story />
+        </div>
+      </FileSystemContext.Provider>
     )
   ],
   parameters: {
     docs: {
       description: {
-        component: 'Component for handling patch file operations in the SpiceTime development environment.'
+        component: 'Component for handling patch file operations in SpiceTime'
       }
     }
+  },
+  argTypes: {
+    onPatchComplete: { action: 'patch complete' },
+    onError: { action: 'error' }
   }
 };
 
@@ -83,44 +42,25 @@ type Story = StoryObj<typeof PatchDispatcher>;
 
 export const Default: Story = {
   args: {
-    dropzoneLabel: 'Drop patch files here'
+    className: 'p-4 border rounded'
   }
 };
 
-export const CustomStyling: Story = {
+export const WithCustomStyles: Story = {
   args: {
-    className: 'bg-gray-100 p-8 rounded-xl shadow-lg',
-    dropzoneLabel: 'Custom drop zone label'
+    className: 'p-8 bg-gray-100 border-2 border-dashed rounded-xl'
   }
 };
 
-export const Loading: Story = {
-  decorators: [
-    (Story) => (
-      <MockedProvider mocks={[]} addTypename={false}>
-        <FileSystemContext.Provider value={mockFileSystem}>
-          <div className="p-6">
-            <Story />
-          </div>
-        </FileSystemContext.Provider>
-      </MockedProvider>
-    )
-  ]
-};
-
-export const Error: Story = {
-  decorators: [
-    (Story) => (
-      <MockedProvider mocks={[{
-        request: { query: ACTIVE_PATCHES },
-        error: new Error('Failed to load patches')
-      }]} addTypename={false}>
-        <FileSystemContext.Provider value={mockFileSystem}>
-          <div className="p-6">
-            <Story />
-          </div>
-        </FileSystemContext.Provider>
-      </MockedProvider>
-    )
-  ]
+export const Processing: Story = {
+  args: {
+    className: 'p-4 border rounded'
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Shows processing state when handling patch files'
+      }
+    }
+  }
 };

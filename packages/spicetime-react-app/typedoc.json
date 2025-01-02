@@ -1,0 +1,17 @@
+{
+  "entryPoints": ["src/index.ts"],
+  "out": "docs",
+  "plugin": ["typedoc-plugin-markdown", "typedoc-plugin-mermaid"],
+  "theme": "markdown",
+  "readme": "README.md",
+  "name": "SpiceTime React App Documentation",
+  "categorizeByGroup": true,
+  "categoryOrder": ["Core", "Components", "Utils"],
+  "exclude": ["**/*.test.ts", "**/*.test.tsx"],
+  "excludePrivate": true,
+  "excludeExternals": true,
+  "validation": {
+    "notDocumented": true,
+    "invalidLink": true
+  }
+}

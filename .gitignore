@@ -1,8 +1,2 @@
-node_modules
-.DS_Store
-.idea
-.vscode
-dist
-coverage
-# Build analysis
-**/stats.html
+.patch/
+*.patch.*
