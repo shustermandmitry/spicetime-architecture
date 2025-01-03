@@ -4,7 +4,7 @@
       "dependsOn": ["^build"],
       "outputs": ["coverage/**"],
       "cache": true,
-      "inputs": ["src/**/*.{js,jsx,ts,tsx}", "test/**/*.{js,jsx,ts,tsx}", "vitest.setup.js"]
+      "inputs": ["src/**/*.{js,jsx,ts,tsx}", "test/**/*.{js,jsx,ts,tsx}", "tools/vite-config/vitest.setup.js"]
     },
     "dev": {
       "dependsOn": ["^generate-all"], 
