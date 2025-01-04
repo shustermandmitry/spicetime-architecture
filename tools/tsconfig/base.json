@@ -1,90 +1,49 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "display": "Base",
-  "display-comment": "An optional name to display in tools to identify this configuration.",
-  
   "compilerOptions": {
     "target": "ESNext",
-    "target-comment": "Specifies the language version. 'ESNext' enables the latest JavaScript features like top-level await.",
-    
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "lib-comment": "Includes standard libraries for DOM and modern ECMAScript features.",
-    
+    "engines": {
+      "node": ">=18 <19"
+    },
     "allowJs": true,
-    "allowJs-comment": "Allows importing and compiling JavaScript files in addition to TypeScript.",
-    
     "skipLibCheck": true,
-    "skipLibCheck-comment": "Speeds up builds by skipping type checks of declaration files in node_modules.",
-    
     "strict": true,
-    "strict-comment": "Enables all TypeScript strict features for better type safety.",
-    
     "forceConsistentCasingInFileNames": true,
-    "forceConsistentCasingInFileNames-comment": "Enforces consistent casing in imports, helping avoid environment-specific errors.",
-    
     "noEmit": true,
-    "noEmit-comment": "Prevents emitting JavaScript files; TypeScript works purely as a type checker.",
-    
     "incremental": true,
-    "incremental-comment": "Enables incremental builds, caching previous compilations for faster re-compilation.",
-    
     "esModuleInterop": true,
-    "esModuleInterop-comment": "Ensures compatibility with CommonJS modules like lodash.",
-    
     "module": "ESNext",
-    "module-comment": "Sets the module system. 'ESNext' works well with modern bundlers like Vite.",
-    
     "moduleResolution": "node",
-    "moduleResolution-comment": "Uses Node.js-style path resolution for modules, compatible with most tools.",
-    
     "resolveJsonModule": true,
-    "resolveJsonModule-comment": "Allows importing JSON files as modules.",
-    
     "isolatedModules": true,
-    "isolatedModules-comment": "Optimized for transpilation tools like Babel; enforces one-file-at-a-time transpilation.",
-    
     "jsx": "preserve",
-    "jsx-comment": "Preserves JSX in output, which is required for Next.js and other frameworks.",
-    
     "types": ["vitest/globals"],
-    "types-comment": "Includes type definitions for Vitest's global test helpers.",
-    
     "baseUrl": ".",
-    "baseUrl-comment": "Sets the base directory for resolving non-relative module imports.",
-    
     "paths": {
       "@/*": ["./src/*"]
     },
-    "paths-comment": "Simplifies imports by mapping @/* to ./src/* for easier navigation of project structure.",
-    
     "composite": true,
-    "composite-comment": "Enables project references, useful for monorepo-style projects.",
-    
     "allowSyntheticDefaultImports": true,
-    "allowSyntheticDefaultImports-comment": "Allows default imports from CommonJS modules, reducing friction in interoperability.",
-    
     "emitDecoratorMetadata": false,
-    "emitDecoratorMetadata-comment": "Add metadata for decorators (disabled here, as decorators are not currently used).",
-    
-    "experimentalDecorators": false,
-    "experimentalDecorators-comment": "Enabled only if decorators will be used (currently disabled)."
+    "experimentalDecorators": false
   },
   
   "include": [
-    "**/*.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "../vite-config/base.js",
+    "../../**/*.d.ts",
+    "../../**/*.ts",
+    "../../**/*.tsx",
+    "../vite-config/base.ts",
     "../vite-config/vitest.setup.ts",
     ".next/types/**/*.ts"
   ],
-  "include-comment": "Includes all relevant TypeScript files, type definitions, configuration files, and Next.js types.",
-  
   "exclude": [
     "node_modules",
     "dist",
+    "claude",
+    "docs",
     ".turbo",
     ".next"
-  ],
-  "exclude-comment": "Excludes node_modules, build artifacts, TurboRepo cache, and Next.js build output directories."
+  ]
 }
