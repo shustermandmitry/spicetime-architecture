@@ -4,10 +4,18 @@
       "dependsOn": ["^build"],
       "outputs": ["coverage/**"],
       "cache": true,
-      "inputs": ["src/**/*.{js,jsx,ts,tsx}", "test/**/*.{js,jsx,ts,tsx}", "tools/vite-config/vitest.setup.js"]
+      "inputs": [
+        "src/**/*.{js,jsx,ts,tsx}",
+        "test/**/*.{js,jsx,ts,tsx}",
+        "tools/vite-config/vitest.setup.js",
+        "!claude/**/*",
+        "!docs/**/*"
+      ]
     },
     "dev": {
-      "dependsOn": ["^generate-all"], 
+      "dependsOn": [
+        "^generate-all"
+      ],
       "cache": false
     },
     "build": {
@@ -18,16 +26,30 @@
     "lint": {
       "outputs": [],
       "cache": true,
-      "inputs": ["src/**/*.{js,jsx,ts,tsx}", "**/*.json", ".eslintrc.json"]
+      "inputs": [
+        "src/**/*.{js,jsx,ts,tsx}",
+        "**/*.json",
+        ".eslintrc.json",
+        "!claude/**/*",
+        "!docs/**/*"
+      ]
     },
     "clean": {
       "outputs": [],
       "cache": false
     },
     "generate-all": {
-      "outputs": ["src/generated/**"], 
+      "outputs": [
+        "src/generated/**"
+      ],
       "cache": true,
-      "inputs": ["schemas/**/*.graphql", "src/**/*.{ts,tsx}", "**/*.config.js"]
+      "inputs": [
+        "schemas/**/*.graphql",
+        "src/**/*.{ts,tsx}",
+        "**/*.config.js",
+        "!claude/**/*",
+        "!docs/**/*"
+      ]
     }
   }
 }
