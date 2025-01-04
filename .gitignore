@@ -1,2 +1,29 @@
 .patch/
 *.patch.*
+# Dependency directories
+node_modules/
+.pnpm-debug.log
+
+# Logs
+logs/
+*.log
+
+# Build output
+dist/
+build/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE settings
+.idea/
+.vscode/
+.DS_Store
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
