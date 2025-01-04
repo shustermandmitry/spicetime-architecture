@@ -14,9 +14,3 @@ const preview: Preview = {
       }
     },
     docs: {
-      theme: themes.dark
-    }
-  }
-};
-
-export default preview;
