@@ -1,26 +1,46 @@
+# docker-compose.test.yml
+version: "3.9"
+
 services:
   test:
+    # Base service to run tests
     build:
       context: .
       dockerfile: docker/test/Dockerfile
     volumes:
-      - .:/app
+      - .:/app                  # Mounts the project directory inside the container
     environment:
-      - NODE_ENV=test
+      - NODE_ENV=test           # Test environment variable
     ports:
-      - "9229:9229" # Debugging port for test-debug only
-    command: ["pnpm", "test:all"]
+      - "9229:9229"             # Debugging port, used by test-debug only
+    command: ["pnpm", "test:all"]  # Default command to run all tests
     profiles:
-      - run-all-tests         # Executes the entire test suite
+      - run-all-tests           # Profile for running the test suite end to end
 
   test-watch:
-    extends: test
-    command: ["pnpm", "test:watch"]
+    # Extends the base "test" service for watch mode
+    build:
+      context: .
+      dockerfile: docker/test/Dockerfile
+    volumes:
+      - .:/app                  # Mounts the project directory inside the container
+    environment:
+      - NODE_ENV=test           # Test environment variable
+    command: ["pnpm", "test:watch"]  # Command to run tests in watch mode
     profiles:
-      - test-watch-mode       # Runs tests in watch mode for development
+      - test-watch-mode         # Profile for continuous testing during development
 
   test-debug:
-    extends: test
+    # Setup for debugging tests
+    build:
+      context: .
+      dockerfile: docker/test/Dockerfile
+    volumes:
+      - .:/app                  # Mounts the project directory inside the container
+    environment:
+      - NODE_ENV=test           # Test environment variable
+    ports:
+      - "9229:9229"             # Expose debugging port
     command: ["node", "--inspect-brk=0.0.0.0:9229", "node_modules/vitest/vitest.mjs"]
     profiles:
-      - debug-tests           # Enables test debugging with inspector
+      - debug-tests             # Profile for debugging failing or specific tests

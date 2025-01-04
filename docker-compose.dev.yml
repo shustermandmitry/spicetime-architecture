@@ -1,25 +1,24 @@
 services:
   dev:
-    &default-dev
     build:
       context: .
       dockerfile: docker/dev/Dockerfile
     volumes:
-      - /Users/dmitryshusterman/WebstormProjects/spicetime-architecture-setup/spicetime-architecture:/app
-      - /Users/dmitryshusterman/WebstormProjects/spicetime-architecture-setup/spicetime-architecture/logs:/app/logs
+      - .:/app               # Project directory
+      - ./logs:/app/logs     # Logs directory
     ports:
-      - "3000:3000"    # App port
+      - "${DEV_PORT:-3000}:3000"
     environment:
       - NODE_ENV=development
     profiles:
-      - dev            # Standard development mode
+      - dev
     command: ["pnpm", "dev"]
 
   dev-debug:
     <<: *default-dev
     ports:
-      - "3000:3000"    # App debug port
-      - "9229:9229"    # Debugging port
+      - "${DEV_PORT:-3000}:3000"
+      - "9229:9229"
     command: ["node", "--inspect=0.0.0.0:9229", "src/index.js"]
     profiles:
-      - dev-debug      # Debugging mode
+      - dev-debug
