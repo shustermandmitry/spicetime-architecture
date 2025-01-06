@@ -11,13 +11,11 @@ import { FileSystemContext } from '../context/FileSystemContext'
 import type { FileSystemOperations } from '../core/types'
 import { vi } from 'vitest'
 
-// @ts-ignore
-// @ts-ignore
+//
 /**
- * Mocked implementation of FileSystemOperations for testing purposes.
+ * Mocked implementation.unstructured of FileSystemOperations for testing purposes.
  * @typeParam FileSystemOperations - The interface representing the file system operations.
  */
-console.log('vi------------', vi)
 // @ts-ignore
 let mockFs: vi.Mocked<FileSystemOperations>
 mockFs = {

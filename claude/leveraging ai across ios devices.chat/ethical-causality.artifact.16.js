@@ -165,7 +165,7 @@ const typeDefs = `
   }
 `;
 
-// Core causality field implementation
+// Core causality field implementation.unstructured
 class EthicalCausalityField {
     constructor() {
         this.connections = new Graph();
@@ -207,7 +207,7 @@ class EthicalCausalityField {
     }
 }
 
-// Influence field implementation
+// Influence field implementation.unstructured
 class InfluenceField {
     constructor(type, decay) {
         this.type = type;

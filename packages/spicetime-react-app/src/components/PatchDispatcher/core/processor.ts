@@ -2,7 +2,7 @@
 
 /**
  * @module PatchDispatcher
- * @description Core patch processing implementation
+ * @description Core patch processing implementation.unstructured
  */
 
 import { CommandType, FileSystemOperations, PatchCommand, ProcessResult } from './types'
@@ -24,7 +24,7 @@ export class PatchProcessor {
 
   /**
    * Creates a new PatchProcessor instance
-   * @param fs - File system operations implementation
+   * @param fs - File system operations implementation.unstructured
    */
   constructor(private fs: FileSystemOperations) {
   }

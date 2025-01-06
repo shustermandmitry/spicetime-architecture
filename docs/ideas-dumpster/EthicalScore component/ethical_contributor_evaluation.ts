@@ -1,4 +1,4 @@
-// TypeScript implementation
+// TypeScript implementation.unstructured
 
 interface ContributorDomain {
   domain: string;             // Name of the domain (e.g., Professional, Social)
