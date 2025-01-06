@@ -6,7 +6,7 @@ This document provides a consolidated overview of your project configuration, in
 
 ## **Vite Configuration**
 
-### **File: `root/tools/vite-config/base.ts`**
+### **File: `root/tools/vite-config/vite.config.ts`**
 
 This file defines the **base Vite configuration** for building and serving the application, including plugins, optimizations, and test-related settings.
 
@@ -84,7 +84,7 @@ vi.stubGlobal('localStorage', {
 ```
 
 **How It’s Used**:
-- Referenced by the `setupFiles` property in `base.ts`, ensuring it runs before any test file:
+- Referenced by the `setupFiles` property in `vite.config.ts`, ensuring it runs before any test file:
   ```typescript
   setupFiles: './vitest.setup.js'
   ```
@@ -149,7 +149,7 @@ A special configuration for TypeScript, scoped specifically to **Node.js context
 
 | **File**                                | **Purpose**                                                                                     |
 |-----------------------------------------|-------------------------------------------------------------------------------------------------|
-| `tools/vite-config/base.ts`             | Sets up the main Vite configuration, including plugins, build options, and Vitest setup.       |
+| `tools/vite-config/vite.config.ts`             | Sets up the main Vite configuration, including plugins, build options, and Vitest setup.       |
 | `tools/vite-config/vitest.setup.js`     | Configures Vitest by mocking APIs, globals, and defining any setup needed by the test suite.   |
 | `tools/tsconfig/base.json`              | Base TypeScript configuration shared across the app and tools.                                 |
 | `tools/tsconfig/tsconfig.node.json`     | Specific TypeScript configuration for Node.js environments (used by `vite.config.ts`).         |
@@ -159,7 +159,7 @@ A special configuration for TypeScript, scoped specifically to **Node.js context
 ## **How It All Connects**
 
 1. **Vite Build Process**:
-   - `tools/vite-config/base.ts` is the primary configuration for Vite.
+   - `tools/vite-config/vite.config.ts` is the primary configuration for Vite.
    - Plugins like `vite-tsconfig-paths` read the `base.json` file to resolve module aliases (`@/*` => `src/*`).
    - `rollupOptions` enables optimized builds with third-party dependency chunking.
 

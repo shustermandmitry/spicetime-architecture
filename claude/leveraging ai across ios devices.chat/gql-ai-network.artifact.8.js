@@ -120,7 +120,7 @@ const typeDefs = `
   }
 `;
 
-// Resolvers implementation
+// Resolvers implementation.unstructured
 const resolvers = {
     Query: {
         nodes: async (_, { filter }, context) => {

@@ -147,7 +147,7 @@ const typeDefs = `
   }
 `;
 
-// Marketplace implementation
+// Marketplace implementation.unstructured
 class FeedbackMarketplaceManager {
     constructor() {
         this.mechanisms = new MechanismRegistry();

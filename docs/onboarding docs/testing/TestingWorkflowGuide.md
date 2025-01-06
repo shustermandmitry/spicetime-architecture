@@ -169,7 +169,7 @@ vi.useRealTimers()
 
 ## Testing Configuration
 
-The behavior of the testing environment is controlled by the configuration file `root/tools/vite-config/base.ts`. Below is an overview of key configurations:
+The behavior of the testing environment is controlled by the configuration file `root/tools/vite-config/vite.config.ts`. Below is an overview of key configurations:
 
 ### `test.environment`
 Defines the test environment. We use **`jsdom`** to simulate a browser-like behavior during testing:
@@ -205,7 +205,7 @@ coverage: {
 }
 ```
 
-### Additional Options in `base.ts`
+### Additional Options in `vite.config.ts`
 Below are additional test-specific configurations:
 - **`globals: true`**: Allows defining global methods (e.g., `it`, `describe`) without imports.
 - **`css: true`**: Enables testing components with styles.
@@ -219,7 +219,7 @@ Below are additional test-specific configurations:
 2. Write integration tests to validate interactions between modules.
 3. Use `vi` globals (`stubGlobal`, `mock`, `useFakeTimers`) for mocking dependencies.
 4. Always reset mocks after tests (`vi.clearAllMocks`, `vi.restoreAllMocks`).
-5. Refer to the configuration in `root/tools/vite-config/base.ts` to modify test behavior.
+5. Refer to the configuration in `root/tools/vite-config/vite.config.ts` to modify test behavior.
 
 ### For Further Exploration:
 - [Vitest Documentation](https://vitest.dev/)

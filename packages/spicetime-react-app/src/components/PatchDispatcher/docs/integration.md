@@ -10,11 +10,11 @@ import { PatchDispatcher, FileSystemContext } from '@spicetime/react-app';
 // Implement file system operations
 const fileSystem: FileSystemOperations = {
   readFile: async (path) => {
-    // Your file reading implementation
+    // Your file reading implementation.unstructured
     return content;
   },
   writeFile: async (path, content) => {
-    // Your file writing implementation
+    // Your file writing implementation.unstructured
   },
   exists: async (path) => {
     // Check path existence

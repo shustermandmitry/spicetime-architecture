@@ -34,11 +34,11 @@
  * 4. Execute models locally when possible
  *
  * Would you like me to detail any specific component? For example:
- * - CRDT implementation details
+ * - CRDT implementation.unstructured details
  * - Resource management strategies
  * - Shard storage optimization
  */
-// Core local node implementation
+// Core local node implementation.unstructured
 class LocalHoloNode {
     constructor(config) {
         this.nodeId = crypto.randomBytes(32).toString('hex');

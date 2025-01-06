@@ -184,7 +184,7 @@ class HoloNetNode {
     }
 }
 
-// State channel implementation for real-time coordination
+// State channel implementation.unstructured for real-time coordination
 class StateChannelManager {
     constructor() {
         this.channels = new Map();

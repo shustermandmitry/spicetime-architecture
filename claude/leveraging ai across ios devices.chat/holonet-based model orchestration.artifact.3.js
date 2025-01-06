@@ -35,7 +35,7 @@
  *
  * Would you like me to detail any specific part? For example:
  * - Consensus mechanism details
- * - State channel implementation
+ * - State channel implementation.unstructured
  * - Smart contract logic for specific operations
  */
 // Core blockchain state management
@@ -224,7 +224,7 @@ class HoloNetNode {
     }
 }
 
-// State channel implementation for real-time coordination
+// State channel implementation.unstructured for real-time coordination
 class StateChannelManager {
     constructor() {
         this.channels = new Map();

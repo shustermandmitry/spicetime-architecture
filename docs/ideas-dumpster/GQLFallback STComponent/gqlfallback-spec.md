@@ -14,7 +14,7 @@ interface GQLFallback {
 
 // Automatic inheritance - zero config
 class Component extends GQLFallback {
-  // Normal component implementation
+  // Normal component implementation.unstructured
 }
 ```
 

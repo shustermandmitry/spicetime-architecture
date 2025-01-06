@@ -40,7 +40,7 @@
  * - Resource sharing algorithms
  * - Storage optimization approaches
  */
-// Core cognitive node implementation
+// Core cognitive node implementation.unstructured
 class CognitiveNode {
     constructor(config) {
         // Multi-modal storage system

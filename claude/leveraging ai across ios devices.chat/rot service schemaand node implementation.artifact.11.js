@@ -159,7 +159,7 @@ const typeDefs = `
   }
 `;
 
-// Node.js reference implementation
+// Node.js reference implementation.unstructured
 class ROTService {
     constructor() {
         this.measurements = new Map();
@@ -227,7 +227,7 @@ class ROTService {
     }
 }
 
-// ROT resolver implementation
+// ROT resolver implementation.unstructured
 const resolvers = {
     Query: {
         rotStatus: async (_, __, { rotService }) => {

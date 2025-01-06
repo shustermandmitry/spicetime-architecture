@@ -85,13 +85,13 @@ Each **scope folder** contains a `lifeline.json` file that documents the spaceti
       "component": "Github.todo",
       "parent": null,
       "state": "todo",
-      "description": "Initial planning for Github component, no implementation yet."
+      "description": "Initial planning for Github component, no implementation.unstructured yet."
     },
     {
       "component": "Github.added test automation.active",
       "parent": "Github",
       "state": "active",
-      "description": "Partial implementation of Github-specific test automation features."
+      "description": "Partial implementation.unstructured of Github-specific test automation features."
     }
   ]
 }

@@ -31,7 +31,7 @@
  * Specific system mappings?
  * The beauty is that once we establish the ethical basis vectors, all other permission systems become simple rotations/scales in that space, making translations both mathematically elegant and computationally efficient.
  */
-// Core vector space implementation
+// Core vector space implementation.unstructured
 class PermissionVectorSpace {
     constructor() {
         // Base vectors in ethical causality space
