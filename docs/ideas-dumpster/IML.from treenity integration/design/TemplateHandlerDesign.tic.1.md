@@ -9,7 +9,6 @@ across documents.
 ---
 
 ## Key Responsibilities
-
 1. **Template Definition**: Parse and store reusable templates defined by users or the system.
 2. **Template Insertion**: Insert templates into target sections of the document tree.
 3. **Attribute Overrides**: Allow template attributes and content to be extended or overridden.
@@ -17,13 +16,10 @@ across documents.
 ---
 
 ## Template Workflow
-
 ### Step 1: Define Templates
-
 Templates are defined within the document, enabling structured content to be reused.
 
 **Example Template Definition:**
-
 ```plaintext
 $template: ChecklistItem
 --text="Undefined text"
@@ -32,11 +28,9 @@ $template: ChecklistItem
 ---
 
 ### Step 2: Store Templates
-
 Templates are stored in a global registry for retrieval and reuse. Each template is associated with a unique name.
 
 **Registry Example:**
-
 ```json
 {
   "templates": {
@@ -53,18 +47,15 @@ Templates are stored in a global registry for retrieval and reuse. Each template
 ---
 
 ### Step 3: Insert Templates
-
 Templates are inserted into the document using the `$use` directive.
 
 **Example Insertion:**
-
 ```plaintext
 $use: ChecklistItem
 --text="Define system architecture"
 ```
 
 **Resolved Output:**
-
 ```json
 {
   "type": "ChecklistItem",
@@ -77,18 +68,15 @@ $use: ChecklistItem
 ---
 
 ### Step 4: Attribute Overrides
-
 When a template is reused, its attributes can be overridden by specifying new values in the `$use` tag.
 
 **Example Override:**
-
 ```plaintext
 $use: ChecklistItem
 --text="Implement fault tolerance strategies"
 ```
 
 Final Output:
-
 ```json
 {
   "type": "ChecklistItem",
@@ -101,16 +89,13 @@ Final Output:
 ---
 
 ## Syntax
-
 ### Define Template
-
 ```plaintext
 $template: <TemplateName>
 --<attribute>=<defaultValue>
 ```
 
 ### Use Template
-
 ```plaintext
 $use: <TemplateName>
 --<attribute>=<value>
@@ -119,13 +104,10 @@ $use: <TemplateName>
 ---
 
 ## Key Features
-
 ### 1. **Inheritance**
-
 Templates can inherit from other templates, enabling multilevel reusability.
 
 **Example Template Inheritance:**
-
 ```plaintext
 $template: Task
 --title="Unnamed Task"
@@ -138,11 +120,9 @@ $template: SubTask
 ---
 
 ### 2. **Dynamic Attributes**
-
 Attributes within templates can be computed dynamically or depend on external data provided during usage.
 
 **Example Dynamic Attribute:**
-
 ```plaintext
 $template: UserGreeting
 --name="User"
@@ -154,7 +134,6 @@ $use: UserGreeting
 ---
 
 ### 3. **Error Handling**
-
 - **Missing Templates**: Throws an error if a non-existent template is invoked.
   ```plaintext
   Error: Template "NonExistentTemplate" not found.
@@ -168,7 +147,6 @@ $use: UserGreeting
 ---
 
 ## Workflow Benefits
-
 1. **Modularity**: Encourages reusable document structures for consistent formatting.
 2. **Flexibility**: Enables customizable and extensible attributes during template usage.
 3. **Maintainability**: Reduces repetition and ensures centralized updates for templates.
@@ -176,9 +154,7 @@ $use: UserGreeting
 ---
 
 ## Example Use Case
-
 ### Defining and Using Templates
-
 ```plaintext
 $template: TaskItem
 --title="Undefined Task"
@@ -190,7 +166,6 @@ $use: TaskItem
 ```
 
 **Output:**
-
 ```json
 {
   "type": "TaskItem",
@@ -204,11 +179,8 @@ $use: TaskItem
 ---
 
 ## Extensibility
-
 ### Register Custom Templates from Code
-
 Developers can define additional templates programmatically:
-
 ```javascript
 templateHandler.register("CustomTemplate", {
   type: "Custom",
@@ -217,7 +189,6 @@ templateHandler.register("CustomTemplate", {
 ```
 
 ### Dynamic Data Sources
-
 Templates can fetch attributes dynamically from external sources, such as APIs or databases.
 
 ---
