@@ -5,19 +5,18 @@
  * @internal
  */
 import React from 'react'
-import { fireEvent, render, screen, waitFor } from '@testing-library/react'
-import { PatchDispatcher } from './PatchDispatcher'
-import { FileSystemContext } from '../context/FileSystemContext'
-import type { FileSystemOperations } from '../core/types'
-import { vi } from 'vitest'
-
+import {fireEvent, render, screen, waitFor} from '@testing-library/react'
+import {PatchDispatcher} from './PatchDispatcher'
+import {FileSystemContext} from '../context/FileSystemContext'
+import type {FileSystemOperations} from '../core/types'
+import {vi} from 'vitest'
 //
 /**
  * Mocked implementation.unstructured of FileSystemOperations for testing purposes.
  * @typeParam FileSystemOperations - The interface representing the file system operations.
  */
 // @ts-ignore
-let mockFs: vi.Mocked<FileSystemOperations>
+let mockFs: spocetime.Mocked<FileSystemOperations>
 mockFs = {
   readFile: vi.fn(),
   writeFile: vi.fn(),

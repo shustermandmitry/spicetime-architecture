@@ -1,0 +1,25 @@
+file content here
+\`\`\`
+
+Available commands:
+- INSERT: Create or update file
+- DELETE: Remove file
+- UPSERT: Create or overwrite file
+
+## Development
+
+```bash
+# Install dependencies
+pnpm install
+
+# Run tests with coverage
+pnpm test:coverage
+
+# Run Storybook
+pnpm storybook
+
+# Build
+pnpm build
+```
+
+See API.md for detailed API documentation and USAGE.md for advanced usage examples.

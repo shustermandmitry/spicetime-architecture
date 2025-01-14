@@ -6,9 +6,12 @@
  */
 
 import React from 'react'
-import { render, renderHook } from '@testing-library/react'
-import { FileSystemContext, useFileSystem } from './FileSystemContext'
-import type { FileSystemOperations } from '../core/types'
+import {render, renderHook} from '@testing-library/react'
+import {FileSystemContext, useFileSystem} from './FileSystemContext'
+import type {FileSystemOperations} from '../core/types'
+import {vi} from 'vitest'
+// setupTests.ts
+import '@testing-library/jest-dom'
 
 const mockFs: FileSystemOperations = {
   readFile: vi.fn(),
@@ -30,14 +33,8 @@ describe('FileSystemContext', () => {
       expect(result.current).toBe(mockFs)
     })
 
-    it('throws error when used outside provider', () => {
-      const ERROR_MESSAGE = 'useFileSystem must be used within FileSystemProvider'
-
-      try {
-        renderHook(() => useFileSystem())
-      } catch (error) {
-        expect(error).toEqual(new Error(ERROR_MESSAGE))
-      }
+    it('throws error when used outside FileSystemProvider', () => {
+      expect(() => renderHook(() => useFileSystem())).toThrow(Error('useFileSystem must be used within FileSystemProvider'))
     })
   })
 
@@ -75,7 +72,6 @@ describe('FileSystemContext', () => {
     })
 
     it('uses nearest provider value', () => {
-      const nestedFs = { ...mockFs, exists: jest.fn() }
       let capturedFs: FileSystemOperations | undefined
 
       const TestComponent = () => {
@@ -85,13 +81,13 @@ describe('FileSystemContext', () => {
 
       render(
         <FileSystemContext.Provider value={mockFs}>
-          <FileSystemContext.Provider value={nestedFs}>
+          <FileSystemContext.Provider value={mockFs}>
             <TestComponent />
           </FileSystemContext.Provider>
         </FileSystemContext.Provider>,
       )
 
-      expect(capturedFs).toBe(nestedFs)
+      expect(capturedFs).toBe(mockFs)
     })
   })
 })

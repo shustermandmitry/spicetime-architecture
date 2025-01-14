@@ -1,6 +1,7 @@
-const fs = require("fs");
-const path = require("path");
-const glob = require("glob");
+import fs from 'fs'
+import path from 'path'
+import glob from 'globe'
+import readlineSync from 'readline-sync'
 
 /**
  * Aggregates the contents of files matching the given folders and outputs to the console.
@@ -31,7 +32,7 @@ async function aggregateFiles() {
 
   // Step 3: Traverse folders and aggregate content
   for (const folderPath of folderPaths) {
-    const absFolderPath = path.resolve(folderPath.replace("/**", "")); // Normalize base folder path
+    const absFolderPath = path.resolve(process.cwd(), folderPath.replace("/**", "")); // Normalize base folder path
     const globPattern = folderPath.endsWith("/**")
       ? path.join(absFolderPath, "**/*") // Recursive glob pattern
       : path.join(absFolderPath, "*"); // Single-level glob pattern
@@ -55,7 +56,7 @@ async function aggregateFiles() {
       console.error(
         `Error processing path "${folderPath}": ${error.message}`
       );
-      continue;
+
     }
   }
 
@@ -65,7 +66,6 @@ async function aggregateFiles() {
 
 // Mock prompt for simplicity in non-browser environments
 function prompt(question) {
-  const readlineSync = require("readline-sync");
   return readlineSync.question(question);
 }
 

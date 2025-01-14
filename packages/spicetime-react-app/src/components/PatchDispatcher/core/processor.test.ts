@@ -5,8 +5,10 @@
  * @description Unit tests for patch processor core functionality
  */
 
-import { PatchProcessor } from './processor'
-import type { FileSystemOperations } from './types'
+import {PatchProcessor} from './processor'
+import type {FileSystemOperations} from './types'
+import {vi} from 'vitest'
+
 
 /**
  * Mock file system for testing
@@ -90,7 +92,7 @@ content
       const content = `/* COMMAND DELETE PATH test.txt */
 /* COMMAND DELETE END*/`
 
-      jest.spyOn(mockFs, 'exists').mockResolvedValue(true)
+        vi.spyOn(mockFs, 'exists').mockResolvedValue(true)
       await processor.processContent(content)
       expect(mockFs.exists).toHaveBeenCalledWith('test.txt')
     })

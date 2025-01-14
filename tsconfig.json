@@ -22,11 +22,11 @@
   },
   "include": ["**/*.ts", "**/*.tsx"],
   "exclude": [
-    "dist",
-    "node_modules",
-    "claude",
-    "docs",
-    "patches",
-    "aggregated"
+    "**/dist",
+    "**/node_modules",
+    "**/claude",
+    "**/docs",
+    "**/patches",
+    "**/aggregated"
   ]
 }

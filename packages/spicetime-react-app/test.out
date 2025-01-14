@@ -1,0 +1,28 @@
+
+> @spicetime/react-app@0.1.0 test /Users/dmitryshusterman/WebstormProjects/spicetime-architecture-setup/spicetime-architecture/packages/spicetime-react-app
+> vitest run
+
+Excluding the following test paths: [
+  '**/node_modules',
+  '**/dist',
+  '**/claude/**/*',
+  '**/.git',
+  '**/.cache/**',
+  '**/docs/**/*'
+]
+
+ RUN  v2.1.8 /Users/dmitryshusterman/WebstormProjects/spicetime-architecture-setup/spicetime-architecture/packages/spicetime-react-app
+
+ ❯ src/components/PatchDispatcher/context/FileSystemContext.test.tsx (0 test)
+ ❯ src/components/PatchDispatcher/test/integration/PatchDispatcher.test.tsx (0 test)
+ ❯ src/components/PatchDispatcher/core/processor.test.ts (0 test)
+ ❯ src/components/PatchDispatcher/components/PatchDispatcher.test.tsx (0 test)
+
+ Test Files  4 failed (4)
+      Tests  no tests
+   Start at  00:04:15
+   Duration  609ms (transform 19ms, setup 0ms, collect 0ms, tests 0ms, environment 1.37s, prepare 270ms)
+
+ ELIFECYCLE  Test failed. See above for more details.
+
+i fixed it and now it does not want to run any tests
