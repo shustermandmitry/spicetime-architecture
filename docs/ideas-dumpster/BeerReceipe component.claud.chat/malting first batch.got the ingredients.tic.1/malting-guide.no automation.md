@@ -15,7 +15,7 @@
     * Large plastic storage tub
     * Multiple shallow trays
     * DIY malting box with raised mesh bottom
-
+      a test
 ## Equipment Setup
 
 ### Air Circulation
