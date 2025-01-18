@@ -1,9 +1,9 @@
 
 // File: packages/spicetime-react-app/src/components/PatchDispatcher/PatchDispatcher.stories.tsx
 
-import type { Meta, StoryObj } from '@storybook/react';
-import { PatchDispatcher } from './components/PatchDispatcher';
-import { FileSystemContext } from './context/FileSystemContext';
+import type {Meta, StoryObj} from '@storybook/react';
+import {PatchDispatcher} from './PatchDispatcher';
+import {FileSystemContext} from './context/FileSystemContext';
 
 const mockFs = {
   readFile: async () => '',

@@ -4,11 +4,11 @@
  */
 
 import React from 'react'
-import { fireEvent, render, waitFor } from '@testing-library/react'
+import {fireEvent, render, waitFor} from '@testing-library/react'
 import path from 'path'
-import { FileSystemContext, PatchDispatcher } from '@/components/PatchDispatcher'
-import type { FileSystemOperations } from '../../core/types'
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest' // Using Vitest for testing
+import {FileSystemContext, PatchDispatcher} from '@/components/PatchDispatcher'
+import type {FileSystemOperations} from '../../types'
+import {afterEach, beforeEach, describe, expect, it, vi} from 'vitest' // Using Vitest for testing
 import '@testing-library/jest-dom' // For jest-dom assertions
 import fs from 'fs/promises'
 

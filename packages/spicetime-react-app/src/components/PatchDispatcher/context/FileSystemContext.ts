@@ -1,27 +1,39 @@
-// File: packages/spicetime-react-app/src/components/PatchDispatcher/context/FileSystemContext.ts
+import {createContext, ReactNode, useContext} from 'react';
 
-/**
- * @module PatchDispatcher
- * @description React context for file system operations
- */
-
-import { createContext, useContext } from 'react'
-import type { FileSystemOperations } from '../core/types'
-
-/**
- * Context for providing file system operations
- * @internal
- */
-export const FileSystemContext = createContext<FileSystemOperations | null>(null)
-
-/**
- * Hook to access file system operations
- * @throws {Error} When used outside FileSystemContext provider
- */
-export function useFileSystem(): FileSystemOperations {
-  const context = useContext(FileSystemContext)
-  if (!context) {
-    throw new Error('useFileSystem must be used within FileSystemProvider')
-  }
-  return context
+// Interface for File System Operations
+export interface FileSystemOperations {
+    mkdir: (path: string) => Promise<void>;
 }
+
+// Default implementation for file system operations
+const defaultOperations: FileSystemOperations = {
+    mkdir: async (path: string) => {
+        console.log(`Created directory: ${path}`);
+    },
+};
+
+// Creating the React context with default operations
+export const FileSystemContext = createContext<FileSystemOperations>(defaultOperations);
+
+// Custom hook to consume the FileSystemContext
+export const useFileSystem = (): FileSystemOperations => {
+    const context = useContext(FileSystemContext);
+  if (!context) {
+      throw new Error('useFileSystem must be used within a FileSystemProvider');
+  }
+    return context;
+};
+
+// Props for the provider
+interface FileSystemProviderProps {
+    children: ReactNode;
+}
+
+// FileSystemProvider Component
+export const FileSystemProvider: JSX.Element = ({children: ReactNode}) => {
+    return (
+        <FileSystemContext.Provider value = {defaultOperations} >
+            {children}
+            < /FileSystemContext.Provider>
+    );
+};

@@ -32,7 +32,7 @@ In Spicetime, the **spicetime-architecture monorepo is the seed**:
 - You can’t split tools or packages without **inheriting their context**.
   > Wolves die in captivity. Components can’t thrive when stripped from their generative ecosystem.
 
-For a detailed exploration, check out [The Seed Philosophy](docs/seed.md).
+For a detailed exploration, check out [The Seed Philosophy](../../mySpiceTime/docs/seed.md).
 
 ---
 
@@ -49,22 +49,25 @@ To clone and start working with Spicetime-architecture:
    ```
 3. Start building! 🎉
 
-For guidance on project structure, see [Contribution Guidelines](docs/contributing.md).
+For guidance on project structure, see [Contribution Guidelines](../../mySpiceTime/docs/contributing.md).
 
 ---
 
 ## 📖 Learn More
 
 ### 🌌 Key Concepts:
-- **The Indivisible Seed**: [Read about it here](docs/seed.md).
-- **Dynamic Inheritance**: [Learn how it works](docs/inheritance.md).
-- **Fractal Scalability**: [Explore the philosophy](docs/fractals.md).
+
+- **The Indivisible Seed**: [Read about it here](../../mySpiceTime/docs/seed.md).
+- **Dynamic Inheritance**: [Learn how it works](../../mySpiceTime/docs/inheritance.md).
+- **Fractal Scalability**: [Explore the philosophy](../../mySpiceTime/docs/fractals.md).
 
 ### 🛠 Tools and Configuration:
-- Learn about our shared tooling and configs ([Read More](docs/tooling.md)).
+
+- Learn about our shared tooling and configs ([Read More](../../mySpiceTime/docs/tooling.md)).
 
 ### 🤝 Contributions:
-- We welcome contributions! Check the [Contributor's Guide](docs/contributing.md).
+
+- We welcome contributions! Check the [Contributor's Guide](../../mySpiceTime/docs/contributing.md).
 
 ---
 
@@ -72,7 +75,7 @@ For guidance on project structure, see [Contribution Guidelines](docs/contributi
 
 While Spicetime emphasizes the connectedness of tools and components, we also acknowledge the **alternative universe called NPM**. Independent tools and packages will be published to NPM for broader accessibility.
 
-For details on independent tools, visit [Spicetime on NPM](docs/npm-tools.md).
+For details on independent tools, visit [Spicetime on NPM](../../mySpiceTime/docs/npm-tools.md).
 
 ---
 

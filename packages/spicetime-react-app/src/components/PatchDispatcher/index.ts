@@ -3,6 +3,6 @@
  * @description Public exports
  */
 
-export { PatchDispatcher } from './components/PatchDispatcher'
+export {PatchDispatcher} from './PatchDispatcher'
 export { FileSystemContext, useFileSystem } from './context/FileSystemContext'
-export type { FileSystemOperations, ProcessResult } from './core/types'
+export type {FileSystemOperations, ProcessResult} from './types'
