@@ -18,6 +18,7 @@
     "docs:generate:graphql": "graphql-docs",
     "docs:generate:openapi": "redoc-cli bundle openapi.yaml",
     "docs:generate:diagrams": "c4builder",
+    "docs:generate:jsdoc": "node scripts/generate-docs.js",
     "docs:validate": "run-p docs:validate:*",
     "docs:validate:markdown": "markdownlint ../../mySpiceTime/docs/**/*.md",
     "docs:validate:links": "markdown-link-check ../../mySpiceTime/docs/**/*.md",
