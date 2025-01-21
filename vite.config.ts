@@ -33,7 +33,7 @@ export default defineConfig({
         // Define all possible global entry points
         main: path.resolve(__dirname, 'src/index.ts'),
         server: path.resolve(__dirname, 'src/server/index.ts'),
-        client: path.resolve(__dirname, 'src//client/index.ts'),
+        client: path.resolve(__dirname, 'src/client/index.ts'),
       },
       external: [/.*\.test\.ts$/],// Exclude test files by pattern
       output: {
@@ -47,6 +47,9 @@ export default defineConfig({
     },
   },
   resolve: {
+
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+
     alias: {
       "@context": path.resolve(process.cwd(), "./src/context"), // Alias for context directory
       "@scope": path.resolve(process.cwd(), "./src/context"), // Alias for scope

@@ -45,7 +45,7 @@
       "cache": true,
       "inputs": [
         "schemas/**/*.graphql",
-        "src/**/*.{ts,tsx}",
+        "src/**/*.{ts,tsx,js,jsx}",
         "**/*.config.js",
         "!claude/**/*",
         "!docs/**/*"
