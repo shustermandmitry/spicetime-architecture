@@ -20,9 +20,9 @@ importers:
       axios:
         specifier: 1.7.9
         version: 1.7.9(debug@4.4.0)
-      globe:
-        specifier: ^0.3.1
-        version: 0.3.1
+      fast-glob:
+        specifier: ^3.3.3
+        version: 3.3.3
       jsdocs:
         specifier: ^1.0.0
         version: 1.0.0
@@ -87,6 +87,9 @@ importers:
       c4builder:
         specifier: 0.2.16
         version: 0.2.16(typescript@5.7.2)
+      commander:
+        specifier: ^13.1.0
+        version: 13.1.0
       eslint:
         specifier: 9.17.0
         version: 9.17.0(jiti@2.4.2)
@@ -111,6 +114,9 @@ importers:
       gatsby-source-filesystem:
         specifier: 5.14.0
         version: 5.14.0(gatsby@5.14.1(babel-eslint@10.1.0(eslint@9.17.0(jiti@2.4.2)))(eslint-plugin-testing-library@7.1.1(eslint@9.17.0(jiti@2.4.2))(typescript@5.7.2))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(type-fest@4.31.0)(typescript@5.7.2))
+      glob:
+        specifier: ^11.0.1
+        version: 11.0.1
       graphql:
         specifier: 16.10.0
         version: 16.10.0
@@ -262,6 +268,8 @@ importers:
       vitest:
         specifier: 2.1.8
         version: 2.1.8(@types/node@22.10.5)(jiti@2.4.2)(jsdom@25.0.1)(msw@2.7.0(@types/node@22.10.5)(typescript@5.7.2))(terser@5.37.0)(yaml@2.7.0)
+
+  packages/utils/aggregator: {}
 
 packages:
 
@@ -4319,6 +4327,10 @@ packages:
     resolution: {integrity: sha512-Vw8qHK3bZM9y/P10u3Vib8o/DdkvA2OtPtZvD871QKjy74Wj1WSKFILMPRPSdUSx5RFK1arlJzEtA4PkFgnbuA==}
     engines: {node: '>=18'}
 
+  commander@13.1.0:
+    resolution: {integrity: sha512-/rFeCpNJQbhSZjGVwO9RFV3xPqbnERS8MmIQzCtD/zl6gpJuV/bMLuN92oG3F7d8oDEHHRrujSXNUr8fpjntKw==}
+    engines: {node: '>=18'}
+
   commander@2.20.3:
     resolution: {integrity: sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==}
 
@@ -6034,8 +6046,8 @@ packages:
     resolution: {integrity: sha512-7Bv8RF0k6xjo7d4A/PxYLbUCfb6c+Vpd2/mB2yRDlew7Jb5hEXiCD9ibfO7wpk8i4sevK6DFny9h7EYbM3/sHg==}
     hasBin: true
 
-  glob@11.0.0:
-    resolution: {integrity: sha512-9UiX/Bl6J2yaBbxKoEBRm4Cipxgok8kQYcOPEhScPwebu2I0HoQOuYdIO6S3hLuWoZgpDpwQZMzTFxgpkyT76g==}
+  glob@11.0.1:
+    resolution: {integrity: sha512-zrQDm8XPnYEKawJScsnM0QzobJxlT/kHOOlRTio8IH/GrmxRE5fjllkzdaHclIuNjUQTJYH2xHNIGfdpJkDJUw==}
     engines: {node: 20 || >=22}
     hasBin: true
 
@@ -6078,10 +6090,6 @@ packages:
   globby@11.1.0:
     resolution: {integrity: sha512-jhIXaOzy1sb8IyocaruWSn1TjmnBVs8Ayhcy83rmxNJ8q2uWKCAj3CnJY+KpGSXCueAPc0i05kVvVKtP1t9S3g==}
     engines: {node: '>=10'}
-
-  globe@0.3.1:
-    resolution: {integrity: sha512-1m5u350aXii6rKYh6ulKG6OXlZM+IqTzx7JR1yD9Om4YxFTyI8m/+hsXQmgntEaXkjU3/J7gT9dCgzUdbNpiiQ==}
-    engines: {node: 0.8.x}
 
   globrex@0.1.2:
     resolution: {integrity: sha512-uHJgbwAMwNFf5mLst7IWLNg14x1CkeqglJb/K3doi4dw6q2IvAAmM/Y81kevy83wP+Sst+nutFTYOGg3d1lsxg==}
@@ -16418,6 +16426,8 @@ snapshots:
 
   commander@12.1.0: {}
 
+  commander@13.1.0: {}
+
   commander@2.20.3: {}
 
   commander@4.1.1: {}
@@ -19002,7 +19012,7 @@ snapshots:
       package-json-from-dist: 1.0.1
       path-scurry: 1.11.1
 
-  glob@11.0.0:
+  glob@11.0.1:
     dependencies:
       foreground-child: 3.3.0
       jackspeak: 4.0.2
@@ -19062,8 +19072,6 @@ snapshots:
       ignore: 5.3.2
       merge2: 1.4.1
       slash: 3.0.0
-
-  globe@0.3.1: {}
 
   globrex@0.1.2: {}
 
@@ -19962,7 +19970,7 @@ snapshots:
   jsdocs@1.0.0:
     dependencies:
       colorx: 0.0.7
-      commander: 12.1.0
+      commander: 13.1.0
       marked: 13.0.3
       minitpl: 0.0.3
       mkdirp: 0.5.0
@@ -20461,7 +20469,7 @@ snapshots:
   markdownlint-cli@0.43.0:
     dependencies:
       commander: 12.1.0
-      glob: 11.0.0
+      glob: 11.0.1
       ignore: 6.0.2
       js-yaml: 4.1.0
       jsonc-parser: 3.3.1
@@ -23150,7 +23158,7 @@ snapshots:
 
   rimraf@6.0.1:
     dependencies:
-      glob: 11.0.0
+      glob: 11.0.1
       package-json-from-dist: 1.0.1
 
   ripemd160@2.0.2:
