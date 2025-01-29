@@ -177,7 +177,7 @@ Nested content
     })
   })
 
-  it('handles file system errors gracefully', async () => {
+    it('handles file system error gracefully', async () => {
     const invalidPath = path.join(testDir, '**invalid**/file.txt')
     const onError = vi.fn()
 

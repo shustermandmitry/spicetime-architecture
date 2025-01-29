@@ -37,7 +37,7 @@ mock content
         expect(mockFs.mkdir).toHaveBeenCalledWith('nested/dir', {recursive: true});
     });
 
-    it('should handle errors when mkdir fails', async () => {
+    it('should handle error when mkdir fails', async () => {
         const patchContent = `/* COMMAND INSERT PATH nested/dir/file.txt */
 mock content
 /* COMMAND INSERT END*/`;

@@ -115,7 +115,7 @@ try {
     );
   }
 } catch (error) {
-  // Handle unexpected errors
+  // Handle unexpected error
 }
 ```
 

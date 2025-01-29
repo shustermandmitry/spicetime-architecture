@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "axios": "1.7.9",
+    "chmod": "^0.2.1",
     "fast-glob": "3.3.3",
     "jsdocs": "^1.0.0",
     "react": "18.2.0",

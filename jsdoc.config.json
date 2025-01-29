@@ -1,0 +1,22 @@
+{
+  "source": {
+    "include": [
+      "src"
+    ],
+    "includePattern": ".+(?<!test)\\.js$",
+    // Excludes test files
+    "excludePattern": "(node_modules|dist)"
+  },
+  "opts": {
+    "destination": "./generated-docs",
+    "recurse": true,
+    "readme": "./README.md"
+  },
+  "plugins": [
+    "plugins/markdown"
+  ],
+  "markdown": {
+    "hardwrap": false,
+    "idInHeadings": true
+  }
+}

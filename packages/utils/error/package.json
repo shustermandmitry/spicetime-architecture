@@ -1,0 +1,9 @@
+{
+  "name": "@spicetime/util-error",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "STError.js",
+  "exports": {
+    ".": "./STError.js"
+  }
+}

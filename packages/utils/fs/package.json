@@ -1,0 +1,13 @@
+{
+  "name": "@spicetime/util-fs",
+  "version": "0.0.1",
+  "type": "module",
+  "exports": {
+    "./resolve": "./resolve.js",
+    "./aggregator": "./aggregator.js"
+  },
+  "dependencies": {
+    "@spicetime/util-events": "0.0.1",
+    "@spicetime/util-error": "0.0.1"
+  }
+}

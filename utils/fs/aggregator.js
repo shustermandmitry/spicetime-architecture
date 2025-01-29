@@ -38,7 +38,7 @@ export async function resolveFiles(pathOrPattern) {
                     info: createEvent(
                         'returned file content',
                         absPath,
-                        null,
+                        '',
                         {stats, type: stats.isDirectory() ? 'directory' : 'file'}
                     )
                 }];
