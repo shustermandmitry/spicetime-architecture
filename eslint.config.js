@@ -39,7 +39,7 @@ module.exports = {
       excludedFiles: [
         "node_modules/**",
         "dist/**",
-        "claude/**",
+        "claude.project/**",
         ".cache/**",
         ".git/**",
       ],

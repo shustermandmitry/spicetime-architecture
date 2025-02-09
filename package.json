@@ -29,6 +29,7 @@
     "aggregate": "node utils/aggregatorUtils.js"
   },
   "dependencies": {
+    "@treenity/call-chain": "^1.0.27",
     "axios": "1.7.9",
     "chmod": "^0.2.1",
     "fast-glob": "3.3.3",

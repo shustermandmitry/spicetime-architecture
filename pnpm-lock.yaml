@@ -17,6 +17,9 @@ importers:
 
   .:
     dependencies:
+      '@treenity/call-chain':
+        specifier: ^1.0.27
+        version: 1.0.27(react@18.2.0)
       axios:
         specifier: 1.7.9
         version: 1.7.9(debug@4.4.0)
@@ -2483,6 +2486,9 @@ packages:
 
   '@tootallnate/quickjs-emscripten@0.23.0':
     resolution: {integrity: sha512-C5Mc6rdnsaJDjO3UpGW/CQTHtCKaYlScZTly4JIu97Jxo/odCiH0ITnDXSJPTOrEKk/ycSZ0AOgTmkDtkOsvIA==}
+
+  '@treenity/call-chain@1.0.27':
+    resolution: {integrity: sha512-kPIQCRhJapEShmeeYhzBYQdYpIPdY2K6x465xadl+wVyy91/MtdHnoUBiusYY+SCYBXg1pYDB8vhTMYc66HCNQ==}
 
   '@trysound/sax@0.2.0':
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
@@ -9590,6 +9596,11 @@ packages:
   swap-case@2.0.2:
     resolution: {integrity: sha512-kc6S2YS/2yXbtkSMunBtKdah4VFETZ8Oh6ONSmSd9bRxhqTrtARUCBUiWXH3xVPpvR7tz2CSnkuXVE42EcGnMw==}
 
+  swr@2.3.0:
+    resolution: {integrity: sha512-NyZ76wA4yElZWBHzSgEJc28a0u6QZvhb6w0azeL2k7+Q1gAzVK+IqQYXhVOC/mzi+HZIozrZvBVeSeOZNR2bqA==}
+    peerDependencies:
+      react: 18.2.0
+
   symbol-observable@1.2.0:
     resolution: {integrity: sha512-e900nM8RRtGhlV36KGEU9k65K3mPb1WV70OdjfxlG2EAuM1noi/E/BaW/uMhL7bPEssK8QV57vN3esixjUvcXQ==}
     engines: {node: '>=0.10.0'}
@@ -10160,6 +10171,11 @@ packages:
 
   urlpattern-polyfill@10.0.0:
     resolution: {integrity: sha512-H/A06tKD7sS1O1X2SshBVeA5FLycRpjqiBeqGKmBwBDBy28EnRjORxTNe269KSSr5un5qyWi1iL61wLxpd+ZOg==}
+
+  use-sync-external-store@1.4.0:
+    resolution: {integrity: sha512-9WXSPC5fMv61vaupRkCKCxsPxBocVnwakBEkMIHHpkTTg6icbJtg6jzgtLDm4bl3cSHAca52rYWih0k4K3PfHw==}
+    peerDependencies:
+      react: 18.2.0
 
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
@@ -12437,12 +12453,12 @@ snapshots:
   '@graphql-tools/optimize@1.4.0(graphql@16.10.0)':
     dependencies:
       graphql: 16.10.0
-      tslib: 2.4.1
+      tslib: 2.8.1
 
   '@graphql-tools/optimize@2.0.0(graphql@16.10.0)':
     dependencies:
       graphql: 16.10.0
-      tslib: 2.6.3
+      tslib: 2.8.1
 
   '@graphql-tools/prisma-loader@8.0.17(@types/node@22.10.5)(graphql@16.10.0)':
     dependencies:
@@ -12475,7 +12491,7 @@ snapshots:
       '@ardatan/relay-compiler': 12.0.0(graphql@16.10.0)
       '@graphql-tools/utils': 9.2.1(graphql@16.10.0)
       graphql: 16.10.0
-      tslib: 2.4.1
+      tslib: 2.8.1
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -12485,7 +12501,7 @@ snapshots:
       '@ardatan/relay-compiler': 12.0.0(graphql@16.10.0)
       '@graphql-tools/utils': 10.7.1(graphql@16.10.0)
       graphql: 16.10.0
-      tslib: 2.6.3
+      tslib: 2.8.1
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -12538,7 +12554,7 @@ snapshots:
   '@graphql-tools/utils@8.13.1(graphql@16.10.0)':
     dependencies:
       graphql: 16.10.0
-      tslib: 2.4.1
+      tslib: 2.8.1
 
   '@graphql-tools/utils@9.2.1(graphql@16.10.0)':
     dependencies:
@@ -13752,6 +13768,14 @@ snapshots:
   '@tokenizer/token@0.3.0': {}
 
   '@tootallnate/quickjs-emscripten@0.23.0': {}
+
+  '@treenity/call-chain@1.0.27(react@18.2.0)':
+    dependencies:
+      lru-cache: 11.0.2
+      swr: 2.3.0(react@18.2.0)
+      tslib: 2.8.1
+    transitivePeerDependencies:
+      - react
 
   '@trysound/sax@0.2.0': {}
 
@@ -22844,6 +22868,12 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
+  swr@2.3.0(react@18.2.0):
+    dependencies:
+      dequal: 2.0.3
+      react: 18.2.0
+      use-sync-external-store: 1.4.0(react@18.2.0)
+
   symbol-observable@1.2.0: {}
 
   symbol-tree@3.2.4: {}
@@ -23485,6 +23515,10 @@ snapshots:
       qs: 6.13.1
 
   urlpattern-polyfill@10.0.0: {}
+
+  use-sync-external-store@1.4.0(react@18.2.0):
+    dependencies:
+      react: 18.2.0
 
   util-deprecate@1.0.2: {}
 
