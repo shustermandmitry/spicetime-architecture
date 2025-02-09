@@ -1,7 +1,0 @@
-{
-  "name": "@spicetime/util-scripts",
-  "version": "0.0.0",
-  "dependencies": {
-    "@spicetime/util-error": "0.0.0"
-  }
-}

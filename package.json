@@ -26,17 +26,17 @@
     "docs:build": "gatsby build",
     "docs:serve": "gatsby serve",
     "docs:testGQL": "turbo run generate-all",
-    "aggregate": "node utils/aggregatorUtils.js"
+    "aggregate": "node core-utils/aggregatorUtils.js"
   },
   "dependencies": {
-    "@treenity/call-chain": "^1.0.27",
+    "@treenity/call-chain": "1.0.27",
     "axios": "1.7.9",
-    "chmod": "^0.2.1",
+    "chmod": "0.2.1",
     "fast-glob": "3.3.3",
-    "jsdocs": "^1.0.0",
+    "jsdocs": "1.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "readline-sync": "^1.4.10",
+    "readline-sync": "1.4.10",
     "zod": "3.24.1"
   },
   "devDependencies": {

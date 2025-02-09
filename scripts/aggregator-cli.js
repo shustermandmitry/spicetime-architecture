@@ -3,7 +3,7 @@
  * @module utils/fs/cli
  */
 
-import {Aggregator} from '../utils/fs/aggregator.js';
+import {Aggregator} from '../core-utils/fs/aggregator.js';
 
 const args = process.argv.slice(2);
 // Implement CLI argument parsing
