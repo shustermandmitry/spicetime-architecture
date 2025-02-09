@@ -1,0 +1,28 @@
+{
+  "name": "@core-utils/error",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./Error": {
+      "types": "./dist/Error.d.ts",
+      "import": "./dist/Error.js",
+      "default": "./dist/Error.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "clean": "rimraf dist",
+    "lint": "eslint *.ts",
+    "dev": "tsc --watch"
+  }
+}
