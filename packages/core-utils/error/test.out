@@ -1,0 +1,31 @@
+
+> @core-utils/error@0.1.0 test /Users/dmitryshusterman/WebstormProjects/spicetime-architecture/packages/core-utils/error
+> vitest
+
+Excluding the following test paths: [
+  '**/node_modules',
+  '**/dist',
+  '**/claude.project/**/*',
+  '**/.git',
+  '**/.cache/**',
+  '**/docs/**/*'
+]
+
+ DEV  v2.1.8 /Users/dmitryshusterman/WebstormProjects/spicetime-architecture/packages/core-utils/error
+
+stdout | error.test.ts
+setupTests is loaded
+
+ ❯ error.test.ts (8 tests | 2 failed) 15ms
+   × STError > custom error creation > creates custom error type 8ms
+     → expected { errorType: 'CustomError', …(3) } to match object { errorType: 'ValidationError', …(3) }
+   × STError > custom error creation > maintains extended info in custom errors 2ms
+     → expected { errorType: 'CustomError', …(3) } to match object { errorType: 'ValidationError', …(3) }
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 6 passed (8)
+   Start at  23:16:49
+   Duration  836ms (transform 56ms, setup 115ms, collect 65ms, tests 15ms, environment 401ms, prepare 71ms)
+
+ FAIL  Tests failed. Watching for file changes...
+       press h to show help, press q to quit

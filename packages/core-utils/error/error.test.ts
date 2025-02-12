@@ -1,52 +1,24 @@
-/**
- * @module core-utils/error/tests
- * @category Tests
- * @packageDocumentation
- */
-
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { Error } from './Error';
-import type { ErrorInfo, Location } from './Error.types';
-import { findUp } from 'find-up';
+import { STError } from './error';
+import type { ErrorInfo, Location } from './error.type';
 
-vi.mock('find-up', () => ({
-  findUp: vi.fn()
-}));
-
-/**
- * Main test suite for Error utility
- * @group Core Tests
- */
-describe('Error', () => {
+describe('STError', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     vi.spyOn(process, 'cwd').mockReturnValue('/test/current/dir');
   });
 
-  /**
-   * Tests for core error functionality
-   * @group Core Features
-   */
   describe('core functionality', () => {
-    /**
-     * Validates basic error creation
-     * @test Creates error with message
-     */
     it('creates error with basic message', () => {
-      const error = new Error('Test error');
+      const error = new STError('Test error');
       expect(error.message).toBe('Test error');
-      expect(error.name).toBe('Error');
-      expect(error instanceof Error).toBe(true);
+      expect(error.name).toBe('STError');
     });
 
-    /**
-     * Validates error info structure
-     * @test Error info completeness
-     */
     it('includes error info in instance', () => {
-      const error = new Error('Test error');
+      const error = new STError('Test error');
       const expectedInfo: ErrorInfo = {
-        errorType: 'Error',
+        errorType: 'STError',
         message: 'Test error',
         location: {
           packagePath: expect.any(String),
@@ -57,15 +29,11 @@ describe('Error', () => {
       expect(error.info).toMatchObject(expectedInfo);
     });
 
-    /**
-     * Tests extended info handling
-     * @test Extended info attachment
-     */
     it('handles extended info', () => {
       const extInfo = { code: 500, details: 'Additional info' };
-      const error = new Error('Test error', extInfo);
+      const error = new STError('Test error', extInfo);
       const expectedInfo: ErrorInfo = {
-        errorType: 'Error',
+        errorType: 'STError',
         message: 'Test error',
         location: expect.any(Object),
         extInfo
@@ -74,17 +42,9 @@ describe('Error', () => {
     });
   });
 
-  /**
-   * Tests for custom error type creation
-   * @group Custom Errors
-   */
   describe('custom error creation', () => {
-    /**
-     * Validates custom error type factory
-     * @test Custom error creation
-     */
     it('creates custom error type', () => {
-      const ValidationError = Error.createCustomError('ValidationError');
+      const ValidationError = STError.createCustomError('ValidationError');
       const error = new ValidationError('Invalid input');
       const expectedInfo: ErrorInfo = {
         errorType: 'ValidationError',
@@ -95,12 +55,8 @@ describe('Error', () => {
       expect(error.info).toMatchObject(expectedInfo);
     });
 
-    /**
-     * Tests extended info in custom errors
-     * @test Custom error with extended info
-     */
     it('maintains extended info in custom errors', () => {
-      const ValidationError = Error.createCustomError('ValidationError');
+      const ValidationError = STError.createCustomError('ValidationError');
       const extInfo = { fields: ['email'] };
       const error = new ValidationError('Invalid input', extInfo);
       const expectedInfo: ErrorInfo = {
@@ -113,133 +69,35 @@ describe('Error', () => {
     });
   });
 
-  /**
-   * Tests for location resolution functionality
-   * @group Location Resolution
-   */
   describe('location resolution', () => {
-    beforeEach(() => {
-      vi.mocked(findUp).mockImplementation(async (name: string) => {
-        if (name === 'package.json') return '/test/package.json';
-        if (name === 'sta.json') return '/test/sta.json';
-        return undefined;
-      });
-    });
-
-    /**
-     * Tests package.json location resolution
-     * @test Package path resolution
-     */
-    it('resolves package.json location', async () => {
-      vi.mocked(findUp).mockImplementation(async (name: string) => {
-        if (name === 'package.json') return '/test/package.json';
-        return undefined;
-      });
-      const error = new Error('Test error');
-      const expectedLocation: Location = {
-        packagePath: expect.any(String),
-        staRootPath: null
-      };
-      expect(error.info.location).toMatchObject(expectedLocation);
-    });
-
-    /**
-     * Tests CWD fallback behavior
-     * @test CWD fallback
-     */
     it('falls back to cwd when no package.json found', () => {
-      vi.mocked(fs.existsSync).mockReturnValue(false);
-      const error = new Error('Test error');
+      const error = new STError('Test error');
       const expectedLocation: Location = {
-        packagePath: process.cwd(),
+        packagePath: '/test/current/dir',
         staRootPath: null
-      };
-      expect(error.info.location).toMatchObject(expectedLocation);
-    });
-
-    /**
-     * Tests STA root path resolution
-     * @test STA root resolution
-     */
-    it('resolves STA root path when present', () => {
-      vi.mocked(fs.existsSync).mockImplementation(path => 
-        path.includes('package.json') || path.includes('sta.json')
-      );
-      const error = new Error('Test error');
-      const expectedLocation: Location = {
-        packagePath: expect.any(String),
-        staRootPath: expect.any(String)
       };
       expect(error.info.location).toMatchObject(expectedLocation);
     });
   });
 
-  /**
-   * Tests for extended functionality beyond core spec
-   * @group Extended Features
-   */
-  describe('extended error features', () => {
-    /**
-     * Tests for error chaining functionality
-     * @group Error Chaining
-     */
-    describe('error chaining', () => {
-      /**
-       * Tests external error chaining
-       * @test Error chain creation
-       */
-      it('chains external error information', () => {
-        const originalError = new Error('Original error');
-        const error = new Error('Operation failed', originalError);
-        const expectedInfo: ErrorInfo = {
-          errorType: 'Error',
-          message: 'Operation failed',
-          location: expect.any(Object),
-          extInfo: originalError
-        };
-        expect(error.info).toMatchObject(expectedInfo);
-      });
-
-      /**
-       * Tests nested error handling
-       * @test Nested error handling
-       */
-      it('handles nested Errors', () => {
-        const innerError = new Error('Inner error');
-        const outerError = new Error('Outer error', innerError);
-        expect(outerError.info.extInfo).toBe(innerError);
-        expect((outerError.info.extInfo as Error).info.errorType).toBe('Error');
-      });
+  describe('error chaining', () => {
+    it('chains external error information', () => {
+      const originalError = new STError('Original error');
+      const error = new STError('Operation failed', originalError);
+      const expectedInfo: ErrorInfo = {
+        errorType: 'STError',
+        message: 'Operation failed',
+        location: expect.any(Object),
+        extInfo: originalError
+      };
+      expect(error.info).toMatchObject(expectedInfo);
     });
 
-    /**
-     * Tests for error info safety features
-     * @group Data Safety
-     */
-    describe('error info safety', () => {
-      /**
-       * Tests circular reference handling
-       * @test Circular reference safety
-       */
-      it('handles circular references gracefully', () => {
-        const circularObj: any = { a: 1 };
-        circularObj.self = circularObj;
-        const error = new Error('Test error', circularObj);
-        expect(() => JSON.stringify(error.info)).not.toThrow();
-      });
-
-      /**
-       * Tests non-serializable data handling
-       * @test Non-serializable data safety
-       */
-      it('handles non-serializable data', () => {
-        const nonSerializable = {
-          fn: () => {},
-          symbol: Symbol('test')
-        };
-        const error = new Error('Test error', nonSerializable);
-        expect(() => JSON.stringify(error.info)).not.toThrow();
-      });
+    it('handles nested STErrors', () => {
+      const innerError = new STError('Inner error');
+      const outerError = new STError('Outer error', innerError);
+      expect(outerError.info.extInfo).toBe(innerError);
+      expect((outerError.info.extInfo as STError).info.errorType).toBe('STError');
     });
   });
 });

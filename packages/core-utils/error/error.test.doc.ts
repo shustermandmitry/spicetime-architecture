@@ -59,5 +59,4 @@
 /**
  * Public exports
  */
-export { Error } from './Error';
-export type { ErrorInfo, Location } from './Error.types';
+
