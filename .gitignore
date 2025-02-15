@@ -27,3 +27,6 @@ build/
 *.temp
 *.swp
 *.swo
+
+# macos files
+._*
