@@ -1,0 +1,28 @@
+flowchart TB
+    Dev[Developer] --> Gateway[AI Gateway/Manager]
+    Gateway --> Context[Context Management]
+    
+    subgraph AI_Services [AI Service Layer]
+        Architect[AI Architect\nHigh-level Design] 
+        Local[Local Code AI\nCompletion/Patches]
+        Remote[Remote AI Services\nOpenAI/Anthropic]
+    end
+    
+    subgraph Knowledge [Knowledge Base]
+        Context --> Decisions[Architectural Decisions]
+        Context --> Changes[Code Changes]
+        Context --> State[Project State]
+    end
+    
+    Gateway --> AI_Services
+    AI_Services --> Context
+    
+    subgraph Workflows [Key Workflows]
+        direction TB
+        Design[Design Decisions] --> Implementation[Implementation]
+        Implementation --> Review[Code Review]
+        Review --> Refinement[Refinement]
+    end
+    
+    Dev --> Workflows
+    Workflows --> Gateway
