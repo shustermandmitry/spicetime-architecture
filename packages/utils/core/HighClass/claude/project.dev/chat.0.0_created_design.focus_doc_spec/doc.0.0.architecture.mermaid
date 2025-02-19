@@ -1,0 +1,25 @@
+graph TD
+    subgraph HighClass Core
+        FF[Fix Factory] --> FC[Fix Composer]
+        FF --> CF[Custom Fixes]
+        BF[Built-in Fixes] --> PS[Preset System]
+        CF --> PS
+    end
+
+    subgraph Preset Categories
+        PS --> JSN[JavaScript Native]
+        PS --> FP[Functional Programming]
+        PS --> TS[TypeScript Enhanced]
+    end
+
+    subgraph Fix Types
+        CF --> Simple[Simple Fixes]
+        CF --> Complex[Complex Fixes]
+        CF --> Compound[Compound Fixes]
+    end
+
+    subgraph Implementation
+        Simple --> |Creates| SingleFix[Single Behavior Fix]
+        Complex --> |Creates| MultiFix[Multi-Behavior Fix]
+        Compound --> |Combines| CompFix[Fix Composition]
+    end

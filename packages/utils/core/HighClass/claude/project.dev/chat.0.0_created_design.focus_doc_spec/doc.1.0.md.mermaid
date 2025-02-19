@@ -1,0 +1,19 @@
+graph TD
+    subgraph HighClass Core
+        FF[Fix Factory] --> FC[Fix Composer]
+        FF --> BF[Built-in JS Fixes]
+        BF --> FC
+    end
+
+    subgraph Core Fixes
+        BF --> N[Name Fix]
+        BF --> B[Binding Fix]
+        BF --> P[Property Fix]
+        BF --> I[Inheritance Fix]
+    end
+
+    subgraph Factory System
+        FF --> MF[Make Fix Function]
+        MF --> |Creates| CF[Custom Fix]
+        CF --> FC
+    end
