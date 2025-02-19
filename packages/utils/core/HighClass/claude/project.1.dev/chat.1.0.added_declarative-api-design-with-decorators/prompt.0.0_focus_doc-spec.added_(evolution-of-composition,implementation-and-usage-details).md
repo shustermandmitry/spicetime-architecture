@@ -30,8 +30,8 @@ sequence of evolution, recording time, and avoiding circular recursive loops
 ## claude
 I'll help analyze and evolve the HighClass core specification based on your requirements. Let me break this down step by step.
 
-[doc.of_prompt_0.ts](doc.of_prompt_0.ts)
-
+- [doc.of_prompt_0.ts](doc.of_prompt_0.ts)
+- [diagram.of_prompt_0.mermaid](diagram.of_prompt_0.mermaid)
 Let me explain the key aspects of this evolved design:
 
 1. Evolution Chain:
