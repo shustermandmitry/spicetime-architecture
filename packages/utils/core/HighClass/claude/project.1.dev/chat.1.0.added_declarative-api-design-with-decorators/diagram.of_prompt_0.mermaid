@@ -1,0 +1,22 @@
+graph TD
+    subgraph Core Evolution Chain
+        Fix[fix Factory] --> |Creates| FixedClass[Fixed Class]
+        FixedClass --> |Evolves via| Decorate[decorate Factory]
+        Decorate --> |Produces| DecoratedClass[Decorated Class]
+    end
+
+    subgraph Static Layers
+        FixedClass --> |Adds| FixHelpers[Fix Helpers]
+        DecoratedClass --> |Adds| Decorators[Method Decorators]
+    end
+
+    subgraph Usage Patterns
+        DecoratedClass --> |Class Level| ClassFixes[Class-wide Fixes]
+        DecoratedClass --> |Method Level| MethodDecorators[Per-method Decorators]
+        MethodDecorators --> |Compose| CustomDecorator[Custom Combined Decorator]
+    end
+
+    subgraph Evolution Mechanism
+        Proto[Prototype Chain] --> |Records| TimeSequence[Evolution Timeline]
+        TimeSequence --> |Prevents| Circular[Circular Dependencies]
+    end
