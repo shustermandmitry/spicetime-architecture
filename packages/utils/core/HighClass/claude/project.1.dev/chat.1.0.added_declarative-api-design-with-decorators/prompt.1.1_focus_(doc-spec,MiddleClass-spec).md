@@ -84,7 +84,7 @@ remember, we never monkey with the past. its frozen anyway
 I'll help evolve our HighClass specification further based on your detailed requirements, 
 particularly focusing on the bootstrap process and linguistic patterns.
 
-[doc.of_prompt_1.highclass-api-surface.ts](doc.of_prompt_1.highclass-api-surface.ts)
+[doc.of_prompt_1.api-surface.ts](doc.of_prompt_1.api-surface.ts)
 
 This evolved specification introduces several key concepts:
 
