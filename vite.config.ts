@@ -7,10 +7,12 @@ import {defineConfig} from 'vite';
 const excludePaths = [
   '**/node_modules',
   '**/dist',
-  '**/claude.project/**/*',
+  '**/claude/**/*',
   '**/.git',
   '**/.cache/**',
   '**/docs/**/*',
+  '**/._*',
+  '**/._.*'
 ];
 
 // Log the `exclude` paths to ensure they're being applied

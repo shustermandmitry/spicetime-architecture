@@ -27,6 +27,8 @@
     "**/claude",
     "**/docs",
     "**/patches",
-    "**/aggregated"
+    "**/aggregated",
+    "**/._.*",
+    "**/._*"
   ]
 }
