@@ -5,27 +5,6 @@
  * Type definitions for the Error utility.
  * Provides interfaces for error information, location tracking,
  * and error class construction.
- * 
- * @remarks
- * These types support the core Error utility functionality:
- * - Location tracking via find-up
- * - Error information enrichment
- * - Custom error type creation
- * - Extensible error contexts
- * 
- * @example
- * ```typescript
- * // Error information structure
- * const errorInfo: ErrorInfo = {
- *   errorType: 'ValidationError',
- *   message: 'Invalid input',
- *   location: {
- *     packagePath: '/path/to/package.json',
- *     staRootPath: '/path/to/sta/root'
- *   },
- *   extInfo: { fields: ['email'] }
- * };
- * ```
  */
 
 /**
@@ -37,14 +16,6 @@
  * - packagePath is always available (falls back to process.cwd())
  * - staRootPath may be null if STA root is not found
  * - All paths are absolute
- * 
- * @example
- * ```typescript
- * const location: Location = {
- *   packagePath: '/users/project/package.json',
- *   staRootPath: '/users/project/sta.json'
- * };
- * ```
  * 
  * @public
  */
@@ -61,7 +32,7 @@ export interface Location {
    * null if not within an STA project structure
    * Located by finding nearest sta.json using find-up
    */
-  staRootPath: string | null;
+  staRootPath: string | undefined;
 }
 
 /**
@@ -70,39 +41,17 @@ export interface Location {
  * Used for both base Error and custom error types.
  * 
  * @remarks
- * - errorType identifies base 'Error' or custom types
+ * - errorType identifies base 'STError' or custom types
  * - location is automatically resolved
  * - extInfo can contain any additional context
  * - All fields are required except extInfo
- * 
- * @example
- * ```typescript
- * // Basic error info
- * const basic: ErrorInfo = {
- *   errorType: 'Error',
- *   message: 'Operation failed',
- *   location: myLocation,
- *   extInfo: null
- * };
- * 
- * // With extended info
- * const extended: ErrorInfo = {
- *   errorType: 'ValidationError',
- *   message: 'Invalid input',
- *   location: myLocation,
- *   extInfo: {
- *     fields: ['email'],
- *     constraints: { format: 'email' }
- *   }
- * };
- * ```
  * 
  * @public
  */
 export interface ErrorInfo {
   /** 
    * Type identifier for the error
-   * Either 'Error' for base class or custom name for derived types
+   * Either 'STError' for base class or custom name for derived types
    */
   errorType: string;
 
@@ -123,7 +72,7 @@ export interface ErrorInfo {
    * Can contain any type of extra information
    * null if no extra context provided
    */
-  extInfo: unknown | null;
+  extInfo: unknown | undefined;
 }
 
 /**
@@ -144,36 +93,35 @@ export interface ErrorConstructor {
    * @param extInfo - Optional additional context
    */
   new (message: string, extInfo?: unknown): Error;
-
-  /**
-   * Creates a custom error type
-   * @param errorType - Name for custom error
-   * @returns Constructor for new error type
-   */
-  createCustomError(errorType: string): ErrorConstructor;
 }
 
 /**
- * Static interface for error factory functionality.
- * Supports creation of custom error types.
+ * Constructor type for STError class.
+ * Extends ErrorConstructor to include error info.
  * 
  * @remarks
- * - Used internally for static type checking
- * - Ensures proper error type creation
- * 
- * @example
- * ```typescript
- * // Creating custom error type
- * const ValidationError = Error.createCustomError('ValidationError');
- * ```
+ * - Adds structured error information
+ * - Maintains standard Error properties
+ * - Supports error chaining
  * 
  * @internal
  */
-export interface ErrorStatic {
-  /**
-   * Creates a custom error type extending base Error
-   * @param errorType - Name for the custom error type
-   * @returns Constructor for new error type
-   */
-  createCustomError(errorType: string): ErrorConstructor;
+export interface STErrorConstructor extends ErrorConstructor {
+  new (message: string, extInfo?: unknown): STError;
+}
+
+/**
+ * Base class interface for STError.
+ * Extends native Error with additional error information.
+ * 
+ * @remarks
+ * - Includes all Error properties
+ * - Adds structured error info
+ * - Supports location tracking
+ * 
+ * @public
+ */
+export interface STError extends Error {
+  /** Structured error information */
+  readonly info: ErrorInfo;
 }
