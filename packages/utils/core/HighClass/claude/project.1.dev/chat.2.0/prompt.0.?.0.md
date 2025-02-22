@@ -1,26 +1,5 @@
-# 0
-- i wanna create the final sdesign spec and start on test spec
-
-i included a convo with my collaborator
-
-most of it relates to roadmap items
-
-but i want it in context so you can allign design, if needs be with those visions
-[salad_on_HighClass_future.md](../../context/kostya/salad_on_HighClass_future.md)
-
-# 1
-Iv supplied more context, from a convo with my collaborator Kostya, on lifeTree and spiceTree
-that was after i started typing whats listed below, as tic 1 addendum, of this prompt.
-the stuff from kostya has precedence, as iv developed my thoghts much more clearly, and some contradict with tic 1.
-so, if any conflicts, give preference to tic 0, whats immidiately below, then tic 1, context from kostya
-just start with tic 2, overlay tic 1, then overlay this tic 0
-## note that i realized  
-- classes dont have objects in their structure
-- their instances might
-- highClass is a class, and builds tools necessary to create all the branches of its tree, as its beginning, first leaf
-on the first branch of lifeTree
-
-i want to structure along my own experiences with english
+## patch 0
+- i want to structure along my own experiences with english
 - languages dont have objects imbedded into dictionaries. you building fix classes
 - i did not say to do that
 - i said put it all into HighClass class - we just have a pile of words, and they might have different meaning in contexts
